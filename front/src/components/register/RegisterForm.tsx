@@ -105,19 +105,6 @@ const Register: React.FC = () => {
                     </InputContent>
 
                     <InputContent>
-                        <Label label="Teléfono" for="phone" />
-                        <Input
-                            type="phone"
-                            id="phone"
-                            name="phone"
-                            placeholder="Teléfono"
-                            value={user.phone}
-                            onChange={handleChange}
-                            $padding="1rem"
-                        />
-                    </InputContent>
-
-                    <InputContent>
                         <Label label="Contraseña" for="password" />
                         <Input
                             type="password"
