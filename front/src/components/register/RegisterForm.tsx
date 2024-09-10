@@ -7,11 +7,9 @@ import Label from "@/components/ui/Label.ui"
 import Input from "@/components/ui/Input.ui"
 import Select from "@/components/ui/Select.ui"
 import Button from "@/components/ui/Button.ui"
-import { Container, CardForm, GroupTitle, InputContent, ImageContainer, BackgroundForm } from "@/components/form/styledForm"
+import { Container, ContainerForm, GroupTitle, InputContent, BackgroundForm } from "@/components/form/styledForm"
 import Link from "next/link"
 import { colors } from "@/app/GlobalStyles"
-import Image from "next/image"
-
 
 interface UserData{
     username: string
@@ -71,7 +69,7 @@ const Register: React.FC = () => {
     }
     return (
         <Container $fC="row-reverse">
-            <CardForm>
+            <ContainerForm>
                 <GroupTitle>
                     <h1>Registrarse</h1>
                     <span>Para iniciar sesión</span>
@@ -107,19 +105,6 @@ const Register: React.FC = () => {
                     </InputContent>
 
                     <InputContent>
-                        <Label label="Teléfono" for="phone" />
-                        <Input
-                            type="phone"
-                            id="phone"
-                            name="phone"
-                            placeholder="Teléfono"
-                            value={user.phone}
-                            onChange={handleChange}
-                            $padding="1rem"
-                        />
-                    </InputContent>
-
-                    <InputContent>
                         <Label label="Contraseña" for="password" />
                         <Input
                             type="password"
@@ -149,7 +134,7 @@ const Register: React.FC = () => {
                     <Button type="submit" disabled={ user.email === "" || user.username === "" || user.password === ""} $bgColor={colors.white}>Registrarse</Button>
                     <p>¿Ya tienes una cuenta? <Link href="/pages/login">Inicia sesión</Link></p>
                 </Form>
-            </CardForm>
+            </ContainerForm>
             <BackgroundForm />
         </Container>
     )
