@@ -15,10 +15,11 @@ export const Container = styled.div<StyledContainerProps>`
     `
 
 
-export const CardForm = styled.div<{width?: string, height?: string}>`
+export const ContainerForm = styled.div<{width?: string, height?: string}>`
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 1rem;
     width: 50%;
     padding: 6rem;
     background-color: ${colors.secondary};
@@ -31,6 +32,15 @@ export const CardForm = styled.div<{width?: string, height?: string}>`
         padding: 10px;
         border-top: 1px solid ${colors.secondary};
         border-bottom: 1px solid ${colors.secondary};
+    }
+
+    @media (width <= 768px) {
+        padding: 3rem;
+        width: 100%;
+    }
+
+    @media (width <= 480px) {
+        padding: 1rem;
     }
     `
 
@@ -53,6 +63,10 @@ export const BackgroundForm = styled.div<{width?: string, height?: string}>`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    @media (width <= 768px) {
+        display: none;
+    }
 `
 
 export const FormContent = styled.form<{$bg?: string, color?: string}>`
@@ -71,13 +85,6 @@ export const FormContent = styled.form<{$bg?: string, color?: string}>`
             color: ${colors.primary};
         }
     }
-`
-
-export const ImageContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
 `
 
 export const InputContent = styled.div`

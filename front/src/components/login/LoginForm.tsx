@@ -6,9 +6,8 @@ import Form from "@/components/form/Form"
 import Label from "@/components/ui/Label.ui"
 import Input from "@/components/ui/Input.ui"
 import Button from "@/components/ui/Button.ui"
-import { Container, CardForm, InputContent, TextError, ImageContainer, BackgroundForm } from "@/components/form/styledForm"
+import { Container, ContainerForm, InputContent, TextError, BackgroundForm, GroupTitle } from "@/components/form/styledForm"
 import Link from "next/link"
-import Image from "next/image"
 import { colors } from "@/app/GlobalStyles"
 
 interface UserLogin {
@@ -61,8 +60,11 @@ const Login: React.FC = () => {
 
     return (
         <Container>
-            <CardForm>
-                <h1>Iniciar Sesión</h1>
+            <ContainerForm>
+                <GroupTitle>
+                    <h1>Iniciar Sesión</h1>
+                    <span>Para continuar</span>
+                </GroupTitle>
                 <Form onSubmit={handleSubmit}>
                     <InputContent>
                         <Label label="Usuario" for="username" />
@@ -94,7 +96,7 @@ const Login: React.FC = () => {
                     <Button type="submit" disabled={user.username === "" || user.password === ""} $bgColor={colors.white}>Ingresar</Button>
                     <p>¿No tienes una cuenta? <Link href="/pages/register">Registrarse</Link></p>
                 </Form>
-            </CardForm>
+            </ContainerForm>
             <BackgroundForm />
         </Container>
     )
