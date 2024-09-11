@@ -26,4 +26,15 @@ public class UserController {
         }
     }
 
+    // Endpoint for user authentication (login)
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
+        User user = userService.authenticate(email, password);
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 }
