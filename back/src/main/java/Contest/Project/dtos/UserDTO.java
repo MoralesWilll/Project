@@ -16,5 +16,8 @@ public class UserDTO {
     @Email(message = "Email should be valid")
     private String email;
 
+    @NotBlank(message = "Password cannot be blank")
+    private String password;
+
     private int idRole;
 }
