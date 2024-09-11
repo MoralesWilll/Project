@@ -5,11 +5,14 @@ import { useState } from "react"
 import Form from "@/components/form/Form"
 import Label from "@/components/ui/Label.ui"
 import Input from "@/components/ui/Input.ui"
+import InputPassword from "@/components/ui/InputPassword.ui"
 import Select from "@/components/ui/Select.ui"
 import Button from "@/components/ui/Button.ui"
+import Loader from "@/components/ui/Loader.ui"
 import { Container, ContainerForm, GroupTitle, InputContent, BackgroundForm } from "@/components/form/styledForm"
 import Link from "next/link"
 import { colors } from "@/app/GlobalStyles"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 interface UserData{
     username: string
@@ -30,6 +33,8 @@ const initialState: UserData = {
 const Register: React.FC = () => {
     const [user, setUser] = useState<UserData>(initialState)
     const [error, setError] = useState<string>("")
+    const [showPassword, setShowPassword] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
@@ -106,8 +111,8 @@ const Register: React.FC = () => {
 
                     <InputContent>
                         <Label label="Contraseña" for="password" />
-                        <Input
-                            type="password"
+                        <InputPassword
+                            type={showPassword ? "text" : "password"}
                             id="password"
                             name="password"
                             placeholder="Contraseña"
@@ -115,6 +120,11 @@ const Register: React.FC = () => {
                             onChange={handleChange}
                             $padding="1rem"
                             required
+                            icon={
+                                <span onClick={() => setShowPassword(!showPassword)}>
+                                    {showPassword ? <FaEyeSlash color={colors.white} /> : <FaEye color={colors.white} />}
+                                </span>
+                            }
                         />
                     </InputContent>
 
@@ -131,7 +141,13 @@ const Register: React.FC = () => {
                     </InputContent>
 
                     {error && <p>{error}</p>}
-                    <Button type="submit" disabled={ user.email === "" || user.username === "" || user.password === ""} $bgColor={colors.white}>Registrarse</Button>
+                    <Button type="submit" disabled={ user.email === "" || user.username === "" || user.password === "" || user.role === ""} $bgColor={colors.white}>
+                        {isLoading ? (
+                            <Loader />
+                        ) : (
+                            <span>Registrarse</span>
+                        )}
+                    </Button>
                     <p>¿Ya tienes una cuenta? <Link href="/pages/login">Inicia sesión</Link></p>
                 </Form>
             </ContainerForm>
