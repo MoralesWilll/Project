@@ -2,6 +2,8 @@
 
 import React from "react"
 import { useState } from "react"
+import { UserData } from "@/interfaces/IDataUser"
+import { register } from "@/api/register"
 import Form from "@/components/form/Form"
 import Label from "@/components/ui/Label.ui"
 import Input from "@/components/ui/Input.ui"
@@ -13,19 +15,12 @@ import { Container, ContainerForm, GroupTitle, InputContent, BackgroundForm } fr
 import Link from "next/link"
 import { colors } from "@/app/GlobalStyles"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-
-interface UserData{
-    username: string
-    email: string
-    phone: string
-    password: string
-    role?: string
-}
+import { alertSuccess } from "@/components/alerts/Alerts.component"
+import { useRouter } from "next/navigation"
 
 const initialState: UserData = {
     username: "",
     email: "",
-    phone: "",
     password: "",
     role: "",
 }
@@ -35,6 +30,8 @@ const Register: React.FC = () => {
     const [error, setError] = useState<string>("")
     const [showPassword, setShowPassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    
+    const router = useRouter()
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
@@ -47,25 +44,20 @@ const Register: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setError("")
-
+        setIsLoading(true)
+        
         try {
-            const response = await fetch("http://localhost:4000/users", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(user),
-            })
-
-            if (!response.ok) {
-                throw new Error("Server Error")
-            }
+            const data = await register(user)
             
-            const data: UserData = await response.json()
-            console.log("Success:", data)
-            console.log("User registered successfully!")
-            console.log(user)
-            setUser(initialState)
+            if (data) {
+                console.log("Success:", data)
+                console.log("User registered successfully!")
+                console.log(user)
+                alertSuccess("Registrado", "Usuario registrado correctamente!")
+                // router.push('/')
+                setUser(initialState)
+                setIsLoading(false)
+            }
             
         } catch (error) {
             console.error("Error:", error)

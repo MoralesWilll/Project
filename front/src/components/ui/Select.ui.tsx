@@ -38,8 +38,8 @@ const SelectField = styled.select<StylesProps>`
 `
 
 const options = [
-    { value: "arrendatario", label: "Arrendatario" },
-    { value: "cliente", label: "Cliente" },
+    { value: "comprador", label: "Comprador" },
+    { value: "vendedor", label: "Vendedor" },
 ]
 
 const Select: React.FC<SelectProps> = ({ id, name, value, onChange, disabled, required, ...styledProps }) => {
