@@ -1,4 +1,4 @@
-package Contest.Project.dtos;
+package Contest.Project.dtos.property;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -6,9 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class PropertyDTO {
-
-    private int id;
+public class PropertyRequestDTO {
 
     private int id_user;
 
