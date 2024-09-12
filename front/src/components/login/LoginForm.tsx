@@ -2,6 +2,7 @@
 
 import React from "react"
 import { useState } from "react"
+import { UserData, UserLogin } from "@/interfaces/IDataUser"
 import Form from "@/components/form/Form"
 import Label from "@/components/ui/Label.ui"
 import Input from "@/components/ui/Input.ui"
@@ -12,11 +13,8 @@ import { Container, ContainerForm, InputContent, TextError, BackgroundForm, Grou
 import Link from "next/link"
 import { colors } from "@/app/GlobalStyles"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { login } from "@/api/auth"
 
-interface UserLogin {
-    username: string
-    password: string
-}
 
 const initialState: UserLogin = {
     username: "",
@@ -40,21 +38,15 @@ const Login: React.FC = () => {
         setIsLoading(true)
 
         try {
-            const response = await fetch(`http://localhost:4000/users?username=${user.username}`)
+            const userData = await login(user)
 
-            if (!response.ok) {
-                throw new Error('Server Error')
-            }
-
-            const data: UserLogin[] = await response.json()
-
-            if(data.length > 0) {
-                const userData = data[0]
-                console.log('Success:', data)
-                console.log('Login successfull!')
+            if (!userData) {
+                setError("Credenciales incorrectas")
+            } else if (userData.password === user.password) {
+                console.log("Login successfull!")
                 setUser(initialState)
-            } else {    
-                setError('Invalid credentials')
+            } else {
+                setError("Contraseña incorrecta")
             }
             
         } catch (error) {
