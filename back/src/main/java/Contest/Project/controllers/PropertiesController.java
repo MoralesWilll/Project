@@ -13,58 +13,46 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/raicesUrbanas/properties")
-public class PropertiesController implements IPropertyController {
+public class PropertiesController implements IPropertiesService {
 
     @Autowired
     private IPropertiesService propertiesService;
 
+
     @Override
     @PostMapping("/create")
-    public ResponseEntity<Property> createController(@Valid @RequestBody PropertyRequestDTO propertyRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(propertiesService.create(propertyRequestDTO));
+    public Property create(PropertyRequestDTO requestDTO) {
+        PropertyRequestDTO newProperty = new PropertyRequestDTO();
+        return propertiesService.create(newProperty);
     }
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteController(@PathVariable Integer id) {
-        try {
-            propertiesService.delete(id);
-            return ResponseEntity.noContent().build(); // 204 No Content
-        } catch (EntityNotFoundException error) {
-            return ResponseEntity.notFound().build(); // 404 Not Found
-        } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500 Internal Server Error
-        }
+    public void delete(@PathVariable Integer id) {
+        propertiesService.delete(id);
     }
-
 
     @Override
     @GetMapping("/readAll")
-    public ResponseEntity<List<PropertyResponseDTO>> readAllController() {
+    public List<PropertyResponseDTO> readAll() {
         List<PropertyResponseDTO> propertyResponse = propertiesService.readAll();
-        return ResponseEntity.ok(propertyResponse);
+        return ResponseEntity.ok(propertyResponse).getBody();
     }
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<PropertyResponseDTO> readByIdController(@PathVariable Integer id) {
-        try {
-            PropertyResponseDTO propertyResponse = propertiesService.readById(id);
-            return ResponseEntity.ok(propertyResponse);
-        } catch (RuntimeException error) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+    public PropertyResponseDTO readById(@PathVariable Integer id) {
+        return propertiesService.readById(id);
     }
 
     @Override
     @PutMapping("/update/{id}")
-    public ResponseEntity<Property> updateController(@RequestBody PropertyRequestDTO propertyRequestDTO, @PathVariable("id") Integer id) {
-        Property updateProperty = propertiesService.update(propertyRequestDTO, id);
-
-        return ResponseEntity.ok(updateProperty);
+    public Property update(@RequestBody PropertyRequestDTO requestDTO, @PathVariable Integer id) {
+        Property updateProperty = propertiesService.update(new PropertyRequestDTO(),id);
+        return ResponseEntity.ok(updateProperty).getBody();
     }
 }
