@@ -1,6 +1,5 @@
 package Contest.Project.controllers;
 
-import Contest.Project.controllers.interfaces.IPropertyController;
 import Contest.Project.dtos.property.PropertyRequestDTO;
 import Contest.Project.dtos.property.PropertyResponseDTO;
 import Contest.Project.entities.Property;
