@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Navbar = styled.nav`
@@ -50,6 +51,9 @@ export const Nav: React.FC = () => {
         <MenuItem>Inicio</MenuItem>
         <MenuItem>Servicios</MenuItem>
         <MenuItem>Nosotros</MenuItem>
+        <Link href="/pages/customer" passHref>
+          <MenuItem>Cliente</MenuItem>
+        </Link>
       </Menu>
       <Button>Ingresar</Button>
     </Navbar>

@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import Nav from "@/components/Nav";
-
+import Card from "@/components/Cards";
 //HERO
 const Container = styled.div`
   font-family: Roboto, sans-serif;
@@ -136,128 +136,20 @@ const HomePage: React.FC = () => {
         {/*---------------TITLE 2 "DESTACADOS" AND DESCRIPTION----------- */}
         <div className="flex flex-col ">
           <Titleh3>Destacados</Titleh3>
-          <h4 className="text-[#747474] text-center ">
+          <h4 className="text-[#747474] text-center  ">
             Descubre las nuevas tendencias e incorporaciones trasadas en el
             ultimo mes.
           </h4>
         </div>
         {/*---------------TARGETS---------------- */}
-        <div className="flex justify-between items-center container-cards h-full w-full gap-40 p-10">
+        <div className="flex justify-around items-center container-cards h-full w-full gap-40 p-10">
           {/*---------------CONTAINER TARGETS---------------- */}
           {/*---------------CARD 1---------------- */}
-          <div className="flex flex-wrap w-2/6 h-full rounded-md shadow-lg shadow-gray-500/50">
-            <div className="h-60 w-full object-contain rounded-md">
-              <img
-                src="/acces/img/HERO.png"
-                alt="place"
-                className="h-full w-full rounded-md"
-              />
-            </div>
-            <div className="h-2/4 w-full bg-[#003C71] text-white ">
-              <h4 className="bg-white text-[#003C71] font-bold pl-5">
-                Nombre propiedad
-              </h4>
-              <div className="flex flex-row justify-around items-center w-full p-1">
-                <p className="font-bold">Precio</p>
-                <p className="bg-[#ffffff58] p-1 rounded-md">2.000.000</p>
-              </div>
-              <div className=" flex p-5 text-center text-xs">
-                <div className="flex flex-col w-2/6">
-                  <p>habitaciones</p>
-                  <p>2</p>
-                </div>
-                <div className="flex flex-col w-2/6">
-                  <p>baños</p>
-                  <p>1</p>
-                </div>
-                <div className="flex flex-col w-2/6">
-                  <p>area</p>
-                  <p>60</p>
-                </div>
-              </div>
-              <div className=" flex justify-center items-center w-full bg-[#003C71] p-3">
-                <button className="bg-white w-1/4 text-[#003C71] rounded-sm shadow-md-white">
-                  Ver
-                </button>
-              </div>
-            </div>
-          </div>
+         <Card></Card>
           {/*---------------CARD 2---------------- */}
-          <div className="flex flex-wrap w-2/6 h-full rounded-md shadow-lg shadow-gray-500/50">
-            <div className="h-60 w-full object-contain rounded-md">
-              <img
-                src="/acces/img/HERO.png"
-                alt="place"
-                className="h-full w-full rounded-md"
-              />
-            </div>
-            <div className="h-2/4 w-full bg-[#003C71] text-white ">
-              <h4 className="bg-white text-[#003C71] font-bold pl-5">
-                Nombre propiedad
-              </h4>
-              <div className="flex flex-row justify-around items-center w-full p-1">
-                <p className="font-bold">Precio</p>
-                <p className="bg-[#ffffff58] p-1 rounded-md">2.000.000</p>
-              </div>
-              <div className=" flex p-5 text-center text-xs">
-                <div className="flex flex-col w-2/6">
-                  <p>habitaciones</p>
-                  <p>2</p>
-                </div>
-                <div className="flex flex-col w-2/6">
-                  <p>baños</p>
-                  <p>1</p>
-                </div>
-                <div className="flex flex-col w-2/6">
-                  <p>area</p>
-                  <p>60</p>
-                </div>
-              </div>
-              <div className=" flex justify-center items-center w-full bg-[#003C71] p-3">
-                <button className="bg-white w-1/4 text-[#003C71] rounded-sm shadow-md-white">
-                  Ver
-                </button>
-              </div>
-            </div>
-          </div>
+          <Card></Card>
           {/*---------------CARD 3---------------- */}
-          <div className="flex flex-wrap w-2/6 h-full rounded-md shadow-lg shadow-gray-500/50">
-            <div className="h-60 w-full object-contain rounded-md">
-              <img
-                src="/acces/img/HERO.png"
-                alt="place"
-                className="h-full w-full rounded-md"
-              />
-            </div>
-            <div className="h-2/4 w-full bg-[#003C71] text-white ">
-              <h4 className="bg-white text-[#003C71] font-bold pl-5">
-                Nombre propiedad
-              </h4>
-              <div className="flex flex-row justify-around items-center w-full p-1">
-                <p className="font-bold">Precio</p>
-                <p className="bg-[#ffffff58] p-1 rounded-md">2.000.000</p>
-              </div>
-              <div className=" flex p-5 text-center text-xs">
-                <div className="flex flex-col w-2/6">
-                  <p>habitaciones</p>
-                  <p>2</p>
-                </div>
-                <div className="flex flex-col w-2/6">
-                  <p>baños</p>
-                  <p>1</p>
-                </div>
-                <div className="flex flex-col w-2/6">
-                  <p>area</p>
-                  <p>60</p>
-                </div>
-              </div>
-              <div className=" flex justify-center items-center w-full bg-[#003C71] p-3">
-                <button className="bg-white w-1/4 text-[#003C71] rounded-sm shadow-md-white">
-                  Ver
-                </button>
-              </div>
-            </div>
-          </div>
+          <Card></Card>
         </div>
         {/*---------------BUTTON MORE TARGETS---------------- */}
         <div className="flex justify-center items-center w-full">
@@ -307,14 +199,14 @@ const HomePage: React.FC = () => {
         </div>
         <div className="h-40 w-full flex flex-col items-center ">
           <h3 className="text-[#003C71] font-bold text-3xl">Redes sociales</h3>
-          <div className="h-full flex justify-between items-center p-10 ">
+          <div className="h-full flex justify-around items-center p-10 ">
             <img
               src="/acces/icons/instagram.png"
               alt=""
-              className="w-1/3 p-5"
+              className="w-1/6 p-5 cursor-pointer"
             />
-            <img src="/acces/icons/correo.png" alt="" className="w-1/3 p-5" />
-            <img src="/acces/icons/whatsapp.png" alt="" className="w-1/3 p-5" />
+            <img src="/acces/icons/correo.png" alt="" className="w-1/6 p-5 cursor-pointer" />
+            <img src="/acces/icons/whatsapp.png" alt="" className="w-1/6 p-5 cursor-pointer" />
           </div>
         </div>
       </section>
