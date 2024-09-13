@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 export const Navbar = styled.nav`
   display: flex;
@@ -51,6 +51,9 @@ export const Nav: React.FC = () => {
         <MenuItem>Inicio</MenuItem>
         <MenuItem>Servicios</MenuItem>
         <MenuItem>Nosotros</MenuItem>
+        <Link href="/pages/customer" passHref>
+          <MenuItem>Cliente</MenuItem>
+        </Link>
       </Menu>
       <Button>
         <Link href="/pages/login">Ingresar</Link>
