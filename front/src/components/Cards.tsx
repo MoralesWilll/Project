@@ -81,7 +81,7 @@ const Button = styled.button`
 const Card: React.FC = () => (
   <CardContainer>
     <ImageContainer>
-      <Image src="/acces/img/HERO.png" alt="place" />
+      <Image src="/assets/img/HERO.png" alt="place" />
     </ImageContainer>
     <InfoContainer>
       <Title>Nombre propiedad</Title>
