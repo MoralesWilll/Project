@@ -1,14 +1,13 @@
 package Contest.Project.interfaces;
 
 import Contest.Project.CRUD.*;
-import Contest.Project.dtos.property.PropertyRequestDTO;
-import Contest.Project.dtos.property.PropertyResponseDTO;
+import Contest.Project.dtos.PropertyDTO;
 import Contest.Project.entities.Property;
 
 public interface IPropertiesService extends
-        CreateService<PropertyRequestDTO, Property>,
-        UpdateService<PropertyRequestDTO, Property, Integer>,
-        ReadAllService<PropertyResponseDTO>,
-        ReadByIdService<PropertyResponseDTO, Integer>,
+        CreateService<PropertyDTO, Property>,
+        UpdateService<PropertyDTO, Property, Integer>,
+        ReadAllService<PropertyDTO>,
+        ReadByIdService<PropertyDTO, Integer>,
         DeleteService<Integer> {
 }

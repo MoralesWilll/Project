@@ -1,7 +1,6 @@
 package Contest.Project.services;
 
-import Contest.Project.dtos.property.PropertyRequestDTO;
-import Contest.Project.dtos.property.PropertyResponseDTO;
+import Contest.Project.dtos.PropertyDTO;
 import Contest.Project.entities.Property;
 import Contest.Project.interfaces.IPropertiesService;
 import Contest.Project.repositories.PropertiesRepository;
@@ -21,7 +20,7 @@ public class PropertiesService implements IPropertiesService {
 
     @Override
     @Transactional
-    public Property create(PropertyRequestDTO propertyRequestDTO) {
+    public Property create(PropertyDTO propertyRequestDTO) {
         Property propertyEntity = Property.builder()
                 .address(propertyRequestDTO.getAddress())
                 .price(propertyRequestDTO.getPrice())
@@ -43,35 +42,35 @@ public class PropertiesService implements IPropertiesService {
     }
 
     @Override
-    public List<PropertyResponseDTO> readAll() {
+    public List<PropertyDTO> readAll() {
         List<Property> listProperty = propertiesRepository.findAll();
 
-        List<PropertyResponseDTO> listPropertyResponse = new ArrayList<>();
+        List<PropertyDTO> listPropertyResponse = new ArrayList<>();
 
         for (Property propertyEntity : listProperty) {
-            PropertyResponseDTO propertyResponseDTO = new PropertyResponseDTO();
-            propertyResponseDTO.setId(propertyEntity.getId_property());
-            propertyResponseDTO.setId_user(propertyEntity.getId_user().getId());
-            propertyResponseDTO.setAddress(propertyEntity.getAddress());
-            propertyResponseDTO.setPrice(propertyEntity.getPrice());
-            propertyResponseDTO.setNumberOfBathrooms(propertyEntity.getNumberOfBathrooms());
-            propertyResponseDTO.setPropertySize(propertyEntity.getPropertySize());
-            propertyResponseDTO.setStratum(propertyEntity.getStratum());
-            propertyResponseDTO.setDescription(propertyEntity.getDescription());
-            propertyResponseDTO.setPropertyObjectiveId(propertyEntity.getPropertyObjective().getId());
-            propertyResponseDTO.setPropertyTypeId(propertyEntity.getPropertyType().getId());
-            propertyResponseDTO.setZoneId(propertyEntity.getZone().getId());
-            listPropertyResponse.add(propertyResponseDTO);
+            PropertyDTO propertyDTO = new PropertyDTO();
+            propertyDTO.setId(propertyEntity.getId_property());
+            propertyDTO.setId_user(propertyEntity.getId_user().getId());
+            propertyDTO.setAddress(propertyEntity.getAddress());
+            propertyDTO.setPrice(propertyEntity.getPrice());
+            propertyDTO.setNumberOfBathrooms(propertyEntity.getNumberOfBathrooms());
+            propertyDTO.setPropertySize(propertyEntity.getPropertySize());
+            propertyDTO.setStratum(propertyEntity.getStratum());
+            propertyDTO.setDescription(propertyEntity.getDescription());
+            propertyDTO.setPropertyObjectiveId(propertyEntity.getPropertyObjective().getId());
+            propertyDTO.setPropertyTypeId(propertyEntity.getPropertyType().getId());
+            propertyDTO.setZoneId(propertyEntity.getZone().getId());
+            listPropertyResponse.add(propertyDTO);
         }
         return listPropertyResponse;
     }
 
     @Override
-    public PropertyResponseDTO readById(Integer id) {
+    public PropertyDTO readById(Integer id) {
         Property propertyEntity = propertiesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Propiedad con el ID " + id + " no encontrada!"));
 
-        PropertyResponseDTO propertyResponse = new PropertyResponseDTO();
+        PropertyDTO propertyResponse = new PropertyDTO();
 
         propertyResponse.setId(propertyEntity.getId_property());
         propertyResponse.setId_user(propertyEntity.getId_user().getId());
@@ -89,7 +88,7 @@ public class PropertiesService implements IPropertiesService {
     }
 
     @Override
-    public Property update(PropertyRequestDTO entity, Integer id) {
+    public Property update(PropertyDTO entity, Integer id) {
         Property existingProperty = propertiesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Propiedad con el ID " + id + " no encontrada!"));
 
