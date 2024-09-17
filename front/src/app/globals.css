@@ -9,7 +9,7 @@
 }
 
 *{
-  /* border: solid 1px red; */
+  border: solid 1px red;
 }
 
 html {
@@ -21,6 +21,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,11 +30,6 @@ body {
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
-
-body {
-  padding: 0;
-  margin: 0;
 }
 
 @layer utilities {
@@ -45,4 +41,98 @@ body {
 
 
 
-/*----------------SECTION HOME---------------------*/
+/*----------------MEDIA QUERY---------------------*/
+@media (max-width: 768px) {
+  /* section icon home  */
+  .section-icon-home {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+  .section-icon-home div{
+    width: 25%;
+    height: 60%;
+  }
+  .section-targets {
+    display: flex;
+    flex-direction: column;
+  }
+  .section-tecnologys{
+    gap: 0;
+  }
+  .section-tecnologys div{
+    width: 30%;
+  }
+/* section card client  */
+  .section-cards-customer{
+    height:max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 30px;
+  }
+  .section-cards-customer div{
+    width: 100%;
+    
+  }
+/* information of client  */
+  .info-profile-customer{
+    width:100% ;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .info-profile-customer div {
+    width: 310px;
+    height: 310px;
+    padding: 0;
+  }
+  .info-profile-customer div div {
+    padding: 20px;
+  }
+    /* section another propieties  */
+  .section-cards-another-propieties{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 1080px) {
+  /* information of client  */
+    .info-profile-customer {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .info-profile-customer div {
+      width: 310px;
+      height: 310px;
+      padding: 0;
+    }
+  
+    .info-profile-customer div div {
+      padding: 20px;
+    }
+    /* section card client  */
+    .section-cards-customer {
+      height: max-content;
+      width: 100%;
+      display: flex;
+    
+      padding: 50px;
+      gap: 30px;
+    }
+
+    .section-cards-customer div {
+      width: 100%;
+      display:flex;
+      flex-direction: column;
+    }
+}
