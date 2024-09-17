@@ -10,7 +10,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 20%;
-  height: 100%;
+  height: max-content;
   border-radius: 0.375rem; /* rounded-md */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* shadow-lg shadow-gray-500/50 */
 
@@ -40,7 +40,13 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   height: 50%; /* h-2/4 */
   width: 100%;
-  background-color: #003c71; /* bg-[#003C71] */
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 60, 112, 1) 29%,
+    rgba(123, 174, 219, 1) 80%
+  );
+  /* bg-[#003C71] */
   color: white;
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -52,8 +58,8 @@ const Title = styled.h4`
   background-color: white;
   color: #003c71; /* text-[#003C71] */
   font-weight: bold;
-  padding-left: 1.25rem; /* pl-5 */
-
+  padding: 0.5rem; /* pl-5 */
+  text-align: center;
   @media (max-width: ${breakpoints.mobile}) {
     text-align: center;
     font-size: 1.25rem; /* Ajustamos el tamaño de la fuente */
@@ -94,6 +100,8 @@ const PriceValue = styled.p`
 
 const DetailsContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
   padding: 1rem; /* p-5 */
   text-align: center;
   font-size: 0.75rem; /* text-xs */
@@ -108,7 +116,7 @@ const Detail = styled.div`
   display: flex;
   flex-direction: column;
   width: 33.3333%;
-  border: 1px solid white;
+  border-bottom: 1px solid white;
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 100%;
@@ -117,9 +125,11 @@ const Detail = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: white;
+  background: white;
+  padding: 5px;
   width: 30%;
   color: #003c71;
+  font-weight: bold;
   border-radius: 0.25rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -132,7 +142,7 @@ const Button = styled.button`
 const Card: React.FC = () => (
   <CardContainer>
     <ImageContainer>
-      <Image src="/acces/img/HERO.png" alt="place" />
+      <Image src="/assets/img/HERO.png" alt="place" />
     </ImageContainer>
     <InfoContainer>
       <Title>Nombre propiedad</Title>
@@ -141,32 +151,34 @@ const Card: React.FC = () => (
         <PriceValue>2.000.000</PriceValue>
       </PriceContainer>
       <DetailsContainer>
-        <Detail>
-          <p className="font-bold">Habitaciones</p>
-          <p>2</p>
-        </Detail>
-        <Detail>
-          <p className="font-bold">Baños</p>
-          <p>1</p>
-        </Detail>
-        <Detail>
-          <p className="font-bold">Área</p>
-          <p>60</p>
-        </Detail>
+        <div className="flex">
+          <Detail>
+            <p className="font-bold ">Habitaciones</p>
+            <p className="p-2">2</p>
+          </Detail>
+          <Detail>
+            <p className="font-bold ">Baños</p>
+            <p className="p-2">1</p>
+          </Detail>
+          <Detail>
+            <p className="font-bold ">Área</p>
+            <p className="p-2">60</p>
+          </Detail>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            width: "100%",
+            height: "max-content",
+            padding: "0.75rem",
+          }}
+        >
+          <Button>Ver</Button>
+          <Button>Editar</Button>
+        </div>
       </DetailsContainer>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-          width: "100%",
-          backgroundColor: "#003C71",
-          padding: "0.75rem",
-        }}
-      >
-        <Button>Ver</Button>
-        <Button>Editar</Button>
-      </div>
     </InfoContainer>
   </CardContainer>
 );

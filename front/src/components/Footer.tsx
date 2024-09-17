@@ -118,9 +118,9 @@ const FooterPage: React.FC = () => (
     <Div center>
       <SubTitle>Redes sociales</SubTitle>
       <SocialIcons>
-        <SocialIcon src="/acces/icons/instagram.png" alt="Instagram" />
-        <SocialIcon src="/acces/icons/correo.png" alt="Correo" />
-        <SocialIcon src="/acces/icons/whatsapp.png" alt="WhatsApp" />
+        <SocialIcon src="/assets/icons/instagram.png" alt="Instagram" />
+        <SocialIcon src="/assets/icons/correo.png" alt="Correo" />
+        <SocialIcon src="/assets/icons/whatsapp.png" alt="WhatsApp" />
       </SocialIcons>
     </Div>
   </Footer>

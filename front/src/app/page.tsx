@@ -24,7 +24,7 @@ const MainSection = styled.section`
   align-items: flex-start;
   justify-content: space-between;
   padding-bottom: 15%;
-  background: url(/acces/img/HERO.png);
+  background: url(/assets/img/HERO.png);
   background-size: cover;
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -67,7 +67,12 @@ const Button = styled.button`
   font-size: 1rem;
 
   &:hover {
-    background-color: #003c71;
+    background: linear-gradient(
+      45deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 60, 112, 1) 29%,
+      rgba(123, 174, 219, 1) 80%
+    );
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -85,6 +90,7 @@ const Titleh3 = styled.h3`
   border-top: solid 2px #003c71;
   border-bottom: solid 2px #003c71;
   color: #003c71;
+  margin-top: 50px;
 
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 2rem;
@@ -110,7 +116,7 @@ const IconServices = styled.div`
   align-items: center;
   width: 20%;
   height: 20rem;
-  border: solid 1px black;
+  border: solid 1px #003c71;
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 80%;
@@ -121,7 +127,7 @@ const IconServices = styled.div`
 const ImgIconArrendamiento = styled.img`
   height: 70%;
   width: 100%;
-  border: solid 1px black;
+  border: solid 1px #003c71;
 
   @media (max-width: ${breakpoints.mobile}) {
     height: auto;
@@ -144,47 +150,58 @@ const HomePage: React.FC = () => {
       </MainSection>
       <Titleh3>¿Qué desea realizar hoy?</Titleh3>
       {/*---------------SECTION ICONS CUSTOMERS---------------- */}
-      <section className="section-icon-home h-60 w-100 p-5 flex flex-row flex-nowrap justify-around align-around bg-[#003C71] mb-10 mt-40 ">
-        <div className="w-1/4 h-full flex justify-center items-center flex-col text-center">
+      <section className="section-icon-home h-screen w-100 flex flex-row flex-nowrap justify-around align-around mb-10 mt-40 ">
+        <div className="h-full w-full object-contain">
           <img
-            src="/acces/icons/arrendatario.png"
-            alt="arrendatario"
-            className="h-3/5 cursor-pointer"
+            src="/assets/img/img-icons.jpg"
+            alt="imgIcon"
+            className="w-full h-full object-cover"
           />
-          <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
-            Arrendatario
-          </h4>
         </div>
-        <div className="w-1/4 h-fullx flex justify-center items-center flex-col text-center ">
-          <img
-            src="/acces/icons/arrendamiento.png"
-            alt="arrendador"
-            className="h-3/5 cursor-pointer object-fill "
-          />
-          <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
-            Arrendador
-          </h4>
-        </div>
-        <div className="w-1/4 h-full flex justify-center items-center flex-col text-center">
-          <img
-            src="/acces/icons/vendedor.png"
-            alt="vendedor"
-            className="h-3/5 cursor-pointer"
-          />
-          <h4 className="h-1/5 w-full flex justify-center items-center  text-white font-bold cursor-pointer">
-            Vendedor
-          </h4>
+        <div className="bg-gradient-to-r from-[#020024] via-[#003C70] to-[#7BAEDB] h-full w-full flex flex-row justify-around items-center p-5 ">
+          <div className="w-1/4 h-1/4 flex justify-center items-center flex-col text-center">
+            <img
+              src="/assets/icons/arrendatario.png"
+              alt="arrendatario"
+              className="h-3/5 cursor-pointer"
+            />
+            <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
+              Arrendatario
+            </h4>
+          </div>
+          <div className="w-1/4 h-1/4 flex justify-center items-center flex-col text-center ">
+            <img
+              src="/assets/icons/arrendamiento.png"
+              alt="arrendador"
+              className="h-3/5 cursor-pointer object-fill "
+            />
+            <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
+              Arrendador
+            </h4>
+          </div>
+          <div className="w-1/4 h-1/4 flex justify-center items-center flex-col text-center">
+            <img
+              src="/assets/icons/vendedor.png"
+              alt="vendedor"
+              className="h-3/5 cursor-pointer"
+            />
+            <h4 className="h-1/5 w-full flex justify-center items-center  text-white font-bold cursor-pointer">
+              Vendedor
+            </h4>
+          </div>
         </div>
       </section>
       {/*---------------SECTION TARGETS "DESTACADOS"---------------- */}
       <section className="h-full w-full mt-40 ">
         {/*---------------TITLE 2 "DESTACADOS" AND DESCRIPTION----------- */}
         <div className="flex flex-col ">
-          <Titleh3>Destacados</Titleh3>
-          <h4 className="text-[#747474] text-center  ">
-            Descubre las nuevas tendencias e incorporaciones trasadas en el
-            ultimo mes.
-          </h4>
+          <h3 className="w-full text-center p-5 text-5xl border-t-2 border-b-2 border-[#003c71] text-[#003c71] mt-5">
+            Destacados
+            <h4 className="text-[#747474] text-center text-2xl  ">
+              Descubre las nuevas tendencias e incorporaciones trasadas en el
+              ultimo mes.
+            </h4>
+          </h3>
         </div>
         {/*---------------TARGETS---------------- */}
         <div className="section-targets flex flex-col-3 justify-around items-center container-cards h-full w-full gap-40 p-10">
@@ -198,7 +215,7 @@ const HomePage: React.FC = () => {
         </div>
         {/*---------------BUTTON MORE TARGETS---------------- */}
         <div className="flex justify-center items-center w-full">
-          <button className="bg-[#003C71] w-1/6 text-white rounded-sm shadow-[#003C71]-500/40">
+          <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
             Conoce mas
           </button>
         </div>
@@ -207,21 +224,21 @@ const HomePage: React.FC = () => {
       <section className="section-tecnologys flex w-full h-full p-5 justify-around items-center gap-20 mt-40 ">
         <div className=" flex justify-center w-2/12 h-40 ">
           <img
-            src="/acces/img/nextjs_logo.png"
+            src="/assets/img/nextjs_logo.png"
             alt=""
             className="object-contain "
           />
         </div>
         <div className=" flex justify-center w-2/12 h-40">
           <img
-            src="/acces/img/mysql_logo.png"
+            src="/assets/img/mysql_logo.png"
             alt=""
             className="object-contain"
           />
         </div>
         <div className=" flex justify-center w-2/12 h-40">
           <img
-            src="/acces/img/logoJava.png"
+            src="/assets/img/logoJava.png"
             alt=""
             className="object-contain"
           />
