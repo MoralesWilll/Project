@@ -2,7 +2,6 @@ package Contest.Project.services;
 
 import Contest.Project.dtos.PropertyDTO;
 import Contest.Project.entities.Property;
-import Contest.Project.interfaces.IPropertiesService;
 import Contest.Project.repositories.PropertiesRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PropertiesService implements IPropertiesService {
+public class PropertiesService {
 
     @Autowired
     private PropertiesRepository propertiesRepository;
 
-    @Override
     @Transactional
     public Property create(PropertyDTO propertyRequestDTO) {
         Property propertyEntity = Property.builder()
@@ -33,7 +31,6 @@ public class PropertiesService implements IPropertiesService {
         return propertiesRepository.save(propertyEntity);
     }
 
-    @Override
     public void delete(Integer id) {
         Property propertyEntity = propertiesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Propiedad con el ID " + id + " no encontrada!"));
@@ -41,7 +38,6 @@ public class PropertiesService implements IPropertiesService {
         propertiesRepository.delete(propertyEntity);
     }
 
-    @Override
     public List<PropertyDTO> readAll() {
         List<Property> listProperty = propertiesRepository.findAll();
 
@@ -65,7 +61,6 @@ public class PropertiesService implements IPropertiesService {
         return listPropertyResponse;
     }
 
-    @Override
     public PropertyDTO readById(Integer id) {
         Property propertyEntity = propertiesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Propiedad con el ID " + id + " no encontrada!"));
@@ -87,7 +82,6 @@ public class PropertiesService implements IPropertiesService {
         return propertyResponse;
     }
 
-    @Override
     public Property update(PropertyDTO entity, Integer id) {
         Property existingProperty = propertiesRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Propiedad con el ID " + id + " no encontrada!"));
