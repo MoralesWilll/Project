@@ -1,8 +1,10 @@
 package Contest.Project.services;
 
 import Contest.Project.dtos.PropertyDTO;
+import Contest.Project.dtos.PropertyResponseDTO;
 import Contest.Project.entities.Property;
-import Contest.Project.repositories.PropertiesRepository;
+import Contest.Project.entities.*;
+import Contest.Project.repositories.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +19,43 @@ public class PropertiesService {
     @Autowired
     private PropertiesRepository propertiesRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PropertyObjectiveRepository propertyObjectiveRepository;
+
+    @Autowired
+    private PropertyTypeRepository propertyTypeRepository;
+
+    @Autowired
+    private ZoneRepository zoneRepository;
+
     @Transactional
     public Property create(PropertyDTO propertyRequestDTO) {
+
+        User user = userRepository.findById(propertyRequestDTO.getId_user())
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + propertyRequestDTO.getId_user()));
+
+        PropertyObjective propertyObjective = propertyObjectiveRepository.findById(propertyRequestDTO.getPropertyObjectiveId())
+                .orElseThrow(() -> new RuntimeException("PropertyObjective not found with ID: " + propertyRequestDTO.getPropertyObjectiveId()));
+        PropertyType propertyType = propertyTypeRepository.findById(propertyRequestDTO.getPropertyTypeId())
+                .orElseThrow(() -> new RuntimeException("PropertyType not found with ID: " + propertyRequestDTO.getPropertyTypeId()));
+        Zone zone = zoneRepository.findById(propertyRequestDTO.getZoneId())
+                .orElseThrow(() -> new RuntimeException("Zone not found with ID: " + propertyRequestDTO.getZoneId()));
+
+
         Property propertyEntity = Property.builder()
                 .address(propertyRequestDTO.getAddress())
-                .price(propertyRequestDTO.getPrice())
+                .description(propertyRequestDTO.getDescription())
                 .numberOfBathrooms(propertyRequestDTO.getNumberOfBathrooms())
+                .price(propertyRequestDTO.getPrice())
                 .propertySize(propertyRequestDTO.getPropertySize())
                 .stratum(propertyRequestDTO.getStratum())
-                .description(propertyRequestDTO.getDescription())
+                .id_user(user)
+                .propertyObjective(propertyObjective)
+                .propertyType(propertyType)
+                .zone(zone)
                 .build();
 
         return propertiesRepository.save(propertyEntity);
@@ -94,5 +124,18 @@ public class PropertiesService {
         existingProperty.setDescription(entity.getDescription());
 
         return propertiesRepository.save(existingProperty);
+    }
+
+    public PropertyResponseDTO createResponse(Property requestedProperty){
+        PropertyResponseDTO propertyResponseDTO = new PropertyResponseDTO();
+        propertyResponseDTO.setAddress(requestedProperty.getAddress());
+        propertyResponseDTO.setPrice(requestedProperty.getPrice());
+        propertyResponseDTO.setNumberOfBathrooms(requestedProperty.getNumberOfBathrooms());
+        propertyResponseDTO.setPropertySize(requestedProperty.getPropertySize());
+        propertyResponseDTO.setStratum(requestedProperty.getStratum());
+        propertyResponseDTO.setDescription(requestedProperty.getDescription());
+        propertyResponseDTO.setPropertyImages(requestedProperty.getPropertyImages());
+
+        return propertyResponseDTO;
     }
 }
