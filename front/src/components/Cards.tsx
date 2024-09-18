@@ -1,13 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+
+// Breakpoints para responsive
+const breakpoints = {
+  mobile: "768px",
+};
 
 const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 16.6667%; /* w-1/6 */
-  height: 100%;
+  width: 20%;
+  height: max-content;
   border-radius: 0.375rem; /* rounded-md */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* shadow-lg shadow-gray-500/50 */
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -15,6 +25,10 @@ const ImageContainer = styled.div`
   width: 100%;
   object-fit: contain; /* object-contain */
   border-radius: 0.375rem; /* rounded-md */
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 12rem; /* Ajustamos la altura en móviles */
+  }
 `;
 
 const Image = styled.img`
@@ -26,15 +40,30 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   height: 50%; /* h-2/4 */
   width: 100%;
-  background-color: #003c71; /* bg-[#003C71] */
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 60, 112, 1) 29%,
+    rgba(123, 174, 219, 1) 80%
+  );
+  /* bg-[#003C71] */
   color: white;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: auto; /* Dejar que crezca según el contenido */
+  }
 `;
 
 const Title = styled.h4`
   background-color: white;
   color: #003c71; /* text-[#003C71] */
   font-weight: bold;
-  padding-left: 1.25rem; /* pl-5 */
+  padding: 0.5rem; /* pl-5 */
+  text-align: center;
+  @media (max-width: ${breakpoints.mobile}) {
+    text-align: center;
+    font-size: 1.25rem; /* Ajustamos el tamaño de la fuente */
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -43,39 +72,79 @@ const PriceContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 0.25rem; /* p-1 */
+  padding: 1rem; /* p-1 */
+
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Price = styled.p`
   font-weight: bold;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem; /* Ajustamos el tamaño de la fuente */
+  }
 `;
 
 const PriceValue = styled.p`
   background-color: #ffffff58; /* bg-[#ffffff58] */
   padding: 0.25rem 0.5rem; /* p-1 rounded-md */
   border-radius: 0.375rem; /* rounded-md */
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1rem; /* Ajustamos el tamaño de la fuente */
+  }
 `;
 
 const DetailsContainer = styled.div`
   display: flex;
-  padding: 1.25rem; /* p-5 */
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem; /* p-5 */
   text-align: center;
   font-size: 0.75rem; /* text-xs */
+
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
 `;
 
 const Detail = styled.div`
   display: flex;
   flex-direction: column;
-  width: 33.3333%; /* w-2/6 */
+  width: 33.3333%;
+  border-bottom: 1px solid white;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const Button = styled.button`
-  background-color: white;
-  width: 25%; /* w-1/4 */
-  color: #003c71; /* text-[#003C71] */
-  border-radius: 0.25rem; /* rounded-sm */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* shadow-md-white */
-  padding: 0.75rem; /* p-3 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 5px;
+  width: 30%;
+  color: #003c71;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 45%; /* Hacemos que el botón ocupe más espacio en móviles */
+  }
+
+  &:hover {
+    background-color: #003c71;
+    color: white;
+  }
 `;
 
 const Card: React.FC = () => (
@@ -90,23 +159,34 @@ const Card: React.FC = () => (
         <PriceValue>2.000.000</PriceValue>
       </PriceContainer>
       <DetailsContainer>
-        <Detail>
-          <p>habitaciones</p>
-          <p>2</p>
-        </Detail>
-        <Detail>
-          <p>baños</p>
-          <p>1</p>
-        </Detail>
-        <Detail>
-          <p>area</p>
-          <p>60</p>
-        </Detail>
+        <div className="flex">
+          <Detail>
+            <p className="font-bold ">Habitaciones</p>
+            <p className="p-2 font-bold">2</p>
+          </Detail>
+          <Detail>
+            <p className="font-bold ">Baños</p>
+            <p className="p-2 font-bold">1</p>
+          </Detail>
+          <Detail>
+            <p className="font-bold ">Área</p>
+            <p className="p-2 font-bold">60</p>
+          </Detail>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            width: "100%",
+            height: "max-content",
+            padding: "0.75rem",
+          }}
+        >
+          <Button>Ver</Button>
+          <Button>Editar</Button>
+        </div>
       </DetailsContainer>
-      <div style={{ display: 'flex', justifyContent:'space-around', alignItems: 'center', width: '100%', backgroundColor: '#003C71', padding: '0.75rem' }}>
-        <Button>Ver</Button>
-        <Button>editar</Button>
-      </div>
     </InfoContainer>
   </CardContainer>
 );
