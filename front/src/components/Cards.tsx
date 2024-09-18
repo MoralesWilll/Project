@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-
+import DetailsPropiety from "@/app/pages/details-propieties/page";
+import Link from "next/link";
 // Breakpoints para responsive
 const breakpoints = {
   mobile: "768px",
@@ -130,7 +131,7 @@ const Button = styled.button`
   align-items: center;
   background: white;
   padding: 5px;
-  width: 30%;
+  width: 100%;
   color: #003c71;
   font-weight: bold;
   border-radius: 0.25rem;
@@ -183,8 +184,12 @@ const Card: React.FC = () => (
             padding: "0.75rem",
           }}
         >
-          <Button>Ver</Button>
-          <Button>Editar</Button>
+          <Link href="/pages/details-propieties" className="w-1/3">
+            <Button>Ver</Button>
+          </Link>
+          <Link href="/pages/details-propieties" className="w-1/3">
+            <Button>Editar</Button>
+          </Link>
         </div>
       </DetailsContainer>
     </InfoContainer>
