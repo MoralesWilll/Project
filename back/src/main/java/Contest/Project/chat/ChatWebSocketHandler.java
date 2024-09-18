@@ -1,53 +1,36 @@
 package Contest.Project.chat;
 
-import Contest.Project.entities.Message;
 import Contest.Project.services.MessageService;
-import org.springframework.web.socket.*;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Timestamp;
 
 public class ChatWebSocketHandler extends TextWebSocketHandler {
 
     private final MessageService messageService;
-    private final Map<String, WebSocketSession> sessions = new HashMap<>();
 
+    // Constructor que recibe el MessageService
     public ChatWebSocketHandler(MessageService messageService) {
         this.messageService = messageService;
     }
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        sessions.put(session.getId(), session);
-    }
+    public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        // Aquí extraemos la información necesaria del mensaje recibido
+        String messageBody = message.getPayload();
+        int senderId = 8; // ID del remitente (puedes modificarlo si es necesario)
+        int recipientId = 9; // ID del destinatario (puedes modificarlo si es necesario)
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-    @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        // Parse the message or extract info here.
-        String payload = message.getPayload();
-        int sender = 8; // Hardcoded ID for sender
-        int recipient = 9; // Hardcoded ID for recipient
-        Message msg = new Message(payload, LocalDateTime.now(), sender, recipient);
-
-        // Save the message to the database
-        messageService.saveMessage(msg);
-
-        // Broadcast the message to all connected users
-        for (WebSocketSession wsSession : sessions.values()) {
-            wsSession.sendMessage(new TextMessage("Message from: " + sender + " -> " + payload));
-        }
+        // Guardamos el mensaje (solo lo acumulamos, no lo guardamos aún en la base de datos)
+        messageService.saveMessage(messageBody, senderId, recipientId, timestamp);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        saveTranscript();
-        sessions.remove(session.getId());
-    }
-
-    private void saveTranscript() {
-        // Here you could implement logic to save a transcript of all messages
-        System.out.println("Transcript saved.");
+        // Guardamos el transcript completo cuando se cierra la conexión
+        messageService.saveTranscript();
     }
 }
