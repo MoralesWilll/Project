@@ -30,8 +30,10 @@ export const Menu = styled.ul<{ open: boolean }>`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
-    width: 100%;
+    width:fit-content;
     ${({ open }) =>
       open
         ? "display: flex;"

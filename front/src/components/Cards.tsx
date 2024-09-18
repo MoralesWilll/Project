@@ -125,6 +125,9 @@ const Detail = styled.div`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: white;
   padding: 5px;
   width: 30%;
@@ -136,6 +139,11 @@ const Button = styled.button`
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 45%; /* Hacemos que el botón ocupe más espacio en móviles */
+  }
+
+  &:hover {
+    background-color: #003c71;
+    color: white;
   }
 `;
 
@@ -154,15 +162,15 @@ const Card: React.FC = () => (
         <div className="flex">
           <Detail>
             <p className="font-bold ">Habitaciones</p>
-            <p className="p-2">2</p>
+            <p className="p-2 font-bold">2</p>
           </Detail>
           <Detail>
             <p className="font-bold ">Baños</p>
-            <p className="p-2">1</p>
+            <p className="p-2 font-bold">1</p>
           </Detail>
           <Detail>
             <p className="font-bold ">Área</p>
-            <p className="p-2">60</p>
+            <p className="p-2 font-bold">60</p>
           </Detail>
         </div>
         <div

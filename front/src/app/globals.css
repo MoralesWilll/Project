@@ -8,6 +8,15 @@
     }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -30,45 +39,7 @@ body {
 
 }
 
- .bg-custom-gradient {
-   background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 60, 112, 1) 29%, rgba(123, 174, 219, 1) 80%);
- }
 
-
-
-.button-know-home {
-  border-color: #003C71;
-  border: 1;
-  border-radius: 0;
-  color: #003C71;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  transition: color 150ms ease-in-out;
-  font-weight: bold;
-
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 100%;
-    background: #003C71;
-    z-index: -1;
-    transition: width 150ms ease-in-out;
-  }
-
-  &:hover {
-    color: #fff;
-
-    &:after {
-      width: 110%;
-    }
-  }
-}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -84,8 +55,53 @@ body {
 }
 /*----------------SECTION HOME---------------------*/
 
+/*----------------SECTION CUSTOMERS---------------------*/
+.bg-custom-gradient {
+  background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 60, 112, 1) 29%, rgba(123, 174, 219, 1) 80%);
+}
 
 
+
+.button-know-home {
+ border-color: #003C71;
+ border: 1;
+ border-radius: 0;
+ color: #003C71;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ transition: color 150ms ease-in-out;
+ font-weight: bold;
+ width: 200px;
+
+ &:after {
+   content: '';
+   position: absolute;
+   display: block;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 0;
+   height: 100%;
+   background: #003C71;
+   z-index: -1;
+   transition: width 150ms ease-in-out;
+ }
+
+ &:hover {
+   color: #fff;
+
+   &:after {
+     width: 110%;
+   }
+ }
+}
+
+.title-animation h3 {
+  opacity: 0; /* Inicialmente invisible */
+  animation: fadeIn 3s forwards; /* Aparece gradualmente */
+  animation-delay: 5s; /* Aparece después de 2 segundos */
+}
 /*----------------MEDIA QUERY---------------------*/
 @media (max-width: 768px) {
   /* section icon home  */
@@ -96,7 +112,7 @@ body {
     align-items: center;
     margin: 0;
   }
-  .section-icon-home div div{
+  .section-icon-home div div div div {
     width: 25%;
     height: 25%;
   }
@@ -147,8 +163,8 @@ body {
     gap: 30px;
   }
 }
-
-@media (max-width: 1080px) {
+/* ----- repsonsive for tablets-----  */
+@media (min-width: 768px) and (max-width: 1024px) {
   /* information of client  */
     .info-profile-customer {
       width: 100%;
@@ -171,7 +187,6 @@ body {
       height: max-content;
       width: 100%;
       display: flex;
-    
       padding: 50px;
       gap: 30px;
     }
@@ -180,5 +195,25 @@ body {
       width: 100%;
       display:flex;
       flex-direction: column;
+    }
+    /* section another propieties  */
+    .section-cards-another-propieties{
+      height: max-content;
+      display: flex;
+      
+      padding: 50px;
+      gap: 30px;
+    }
+    .section-cards-another-propieties div {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+    }
+    .section-cards-another-propieties div div{
+      width: 100%;
+    }
+    .section-cards-another-propieties button {
+      width: 100%;
+      margin:5px;
     }
 }

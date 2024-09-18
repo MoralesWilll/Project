@@ -150,7 +150,7 @@ const HomePage: React.FC = () => {
       </MainSection>
       <Titleh3>¿Qué desea realizar hoy?</Titleh3>
       {/*---------------SECTION ICONS CUSTOMERS---------------- */}
-      <section className="section-icon-home h-screen w-100 flex flex-row flex-nowrap justify-around align-around mb-10 mt-40 ">
+      <section className="section-icon-home h-screen w-100 flex flex-row flex-nowrap justify-around align-around mb-10 mt-10 ">
         <div className="h-full w-full object-contain">
           <img
             src="/assets/img/img-icons.jpg"
@@ -158,37 +158,44 @@ const HomePage: React.FC = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="bg-gradient-to-r from-[#020024] via-[#003C70] to-[#7BAEDB] h-full w-full flex flex-row justify-around items-center p-5 ">
-          <div className="w-1/4 h-1/4 flex justify-center items-center flex-col text-center">
-            <img
-              src="/assets/icons/arrendatario.png"
-              alt="arrendatario"
-              className="h-3/5 cursor-pointer"
-            />
-            <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
-              Arrendatario
-            </h4>
+        <div className="bg-gradient-to-r from-[#020024] via-[#003C70] to-[#7BAEDB] h-full w-full flex flex-col justify-center items-center p-5 ">
+          <div className="text-white text-5xl font-bold">
+            <h2 className="text-center">Escoge una opción
+            </h2>
           </div>
-          <div className="w-1/4 h-1/4 flex justify-center items-center flex-col text-center ">
-            <img
-              src="/assets/icons/arrendamiento.png"
-              alt="arrendador"
-              className="h-3/5 cursor-pointer object-fill "
-            />
-            <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
-              Arrendador
-            </h4>
+          <div className="w-full h-max flex flex-row justify-around items-center p-5">
+            <div className="w-1/4 h-full  flex justify-center items-center flex-col text-center hover:border-2 border-white rounded-lg">
+              <img
+                src="/assets/icons/arrendatario.png"
+                alt="arrendatario"
+                className="h-3/5 cursor-pointer"
+              />
+              <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
+                Arrendatario
+              </h4>
+            </div>
+            <div className="w-1/4 h-full flex justify-center items-center flex-col text-center hover:border-2 border-white rounded-lg">
+              <img
+                src="/assets/icons/arrendamiento.png"
+                alt="arrendador"
+                className="h-3/5 cursor-pointer object-fill "
+              />
+              <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
+                Arrendador
+              </h4>
+            </div>
+            <div className="w-1/4 h-full flex justify-center items-center flex-col text-center hover:border-2 border-white rounded-lg">
+              <img
+                src="/assets/icons/vendedor.png"
+                alt="vendedor"
+                className="h-3/5 cursor-pointer"
+              />
+              <h4 className="h-1/5 w-full flex justify-center items-center  text-white font-bold cursor-pointer">
+                Vendedor
+              </h4>
+            </div>
           </div>
-          <div className="w-1/4 h-1/4 flex justify-center items-center flex-col text-center">
-            <img
-              src="/assets/icons/vendedor.png"
-              alt="vendedor"
-              className="h-3/5 cursor-pointer"
-            />
-            <h4 className="h-1/5 w-full flex justify-center items-center  text-white font-bold cursor-pointer">
-              Vendedor
-            </h4>
-          </div>
+
         </div>
       </section>
       {/*---------------SECTION TARGETS "DESTACADOS"---------------- */}
@@ -204,7 +211,7 @@ const HomePage: React.FC = () => {
           </h3>
         </div>
         {/*---------------TARGETS---------------- */}
-        <div className="section-targets flex flex-col-3 justify-around items-center container-cards h-full w-full gap-40 p-10">
+        <div className="section-targets flex flex-col-3 justify-around items-center container-cards h-full w-full gap-40 p-20">
           {/*---------------CONTAINER TARGETS---------------- */}
           {/*---------------CARD 1---------------- */}
           <Card></Card>
@@ -214,14 +221,14 @@ const HomePage: React.FC = () => {
           <Card></Card>
         </div>
         {/*---------------BUTTON MORE TARGETS---------------- */}
-        <div className="flex justify-center items-center w-full">
+        <div className="flex justify-center items-center w-full mt-20">
           <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
             Conoce mas
           </button>
         </div>
       </section>
       {/*---------------TECNOLOGYS---------------- */}
-      <section className="section-tecnologys flex w-full h-full p-5 justify-around items-center gap-20 mt-40 ">
+      <section className="section-tecnologys flex w-full h-screen p-5 justify-around items-center gap-20 mt-40 ">
         <div className=" flex justify-center w-2/12 h-40 ">
           <img
             src="/assets/img/nextjs_logo.png"
