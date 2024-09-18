@@ -2,15 +2,15 @@ package Contest.Project.dtos;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class PropertyDTO {
 
-    private int id;
 
-    private int id_user;
+    private int id;
 
     @NotBlank(message = "Address cannot be blank")
     @Size(max = 255, message = "Address cannot exceed 255 characters")
@@ -31,9 +31,15 @@ public class PropertyDTO {
     @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     private String description;
 
+    @NotNull
+    private int id_user;
+
+    @NotNull
     private int propertyObjectiveId;
 
+    @NotNull
     private int propertyTypeId;
 
+    @NotNull
     private int zoneId;
 }
