@@ -1,6 +1,7 @@
 package Contest.Project.services;
 
 import Contest.Project.dtos.PropertyDTO;
+import Contest.Project.dtos.PropertyFilterDTO;
 import Contest.Project.dtos.PropertyResponseDTO;
 import Contest.Project.entities.Property;
 import Contest.Project.entities.*;
@@ -9,6 +10,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.domain.Specification;
+import jakarta.persistence.criteria.Predicate;
+import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +21,7 @@ import java.util.List;
 public class PropertiesService {
 
     @Autowired
-    private PropertiesRepository propertiesRepository;
+    private PropertyRepository propertyRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -44,7 +48,6 @@ public class PropertiesService {
         Zone zone = zoneRepository.findById(propertyRequestDTO.getZoneId())
                 .orElseThrow(() -> new RuntimeException("Zone not found with ID: " + propertyRequestDTO.getZoneId()));
 
-
         Property propertyEntity = Property.builder()
                 .address(propertyRequestDTO.getAddress())
                 .description(propertyRequestDTO.getDescription())
@@ -58,18 +61,18 @@ public class PropertiesService {
                 .zone(zone)
                 .build();
 
-        return propertiesRepository.save(propertyEntity);
+        return propertyRepository.save(propertyEntity);
     }
 
     public void delete(Integer id) {
-        Property propertyEntity = propertiesRepository.findById(id)
+        Property propertyEntity = propertyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Propiedad con el ID " + id + " no encontrada!"));
 
-        propertiesRepository.delete(propertyEntity);
+        propertyRepository.delete(propertyEntity);
     }
 
     public List<PropertyDTO> readAll() {
-        List<Property> listProperty = propertiesRepository.findAll();
+        List<Property> listProperty = propertyRepository.findAll();
 
         List<PropertyDTO> listPropertyResponse = new ArrayList<>();
 
@@ -92,7 +95,7 @@ public class PropertiesService {
     }
 
     public PropertyDTO readById(Integer id) {
-        Property propertyEntity = propertiesRepository.findById(id)
+        Property propertyEntity = propertyRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Propiedad con el ID " + id + " no encontrada!"));
 
         PropertyDTO propertyResponse = new PropertyDTO();
@@ -113,7 +116,7 @@ public class PropertiesService {
     }
 
     public Property update(PropertyDTO entity, Integer id) {
-        Property existingProperty = propertiesRepository.findById(id)
+        Property existingProperty = propertyRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Propiedad con el ID " + id + " no encontrada!"));
 
         existingProperty.setAddress(entity.getAddress());
@@ -123,7 +126,7 @@ public class PropertiesService {
         existingProperty.setStratum(entity.getStratum());
         existingProperty.setDescription(entity.getDescription());
 
-        return propertiesRepository.save(existingProperty);
+        return propertyRepository.save(existingProperty);
     }
 
     public PropertyResponseDTO createResponse(Property requestedProperty){
@@ -135,7 +138,55 @@ public class PropertiesService {
         propertyResponseDTO.setStratum(requestedProperty.getStratum());
         propertyResponseDTO.setDescription(requestedProperty.getDescription());
         propertyResponseDTO.setPropertyImages(requestedProperty.getPropertyImages());
+        propertyResponseDTO.setZone(requestedProperty.getZone().getName());
 
         return propertyResponseDTO;
     }
+
+    public List<PropertyResponseDTO> convertToDTO(List<Property> properties) {
+        return properties.stream()
+                .map(this::createResponse)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<PropertyResponseDTO> filterProperties(PropertyFilterDTO filter) {
+        Specification<Property> spec = (root, query, criteriaBuilder) -> {
+            Predicate predicate = criteriaBuilder.conjunction();
+
+            if (filter.getMinPrice() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("price"), filter.getMinPrice()));
+            }
+            if (filter.getMaxPrice() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("price"), filter.getMaxPrice()));
+            }
+            if (filter.getMinNumberOfBathrooms() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("numberOfBathrooms"), filter.getMinNumberOfBathrooms()));
+            }
+            if (filter.getMaxNumberOfBathrooms() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("numberOfBathrooms"), filter.getMaxNumberOfBathrooms()));
+            }
+            if (filter.getMinPropertySize() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("propertySize"), filter.getMinPropertySize()));
+            }
+            if (filter.getMaxPropertySize() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("propertySize"), filter.getMaxPropertySize()));
+            }
+            if (filter.getMinStratum() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("stratum"), filter.getMinStratum()));
+            }
+            if (filter.getMaxStratum() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("stratum"), filter.getMaxStratum()));
+            }
+            if (filter.getZoneId() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("zoneId"), filter.getZoneId()));
+            }
+
+            return predicate;
+        };
+
+        List<Property> properties = propertyRepository.findAll(spec);
+        return convertToDTO(properties);
+    }
+
 }

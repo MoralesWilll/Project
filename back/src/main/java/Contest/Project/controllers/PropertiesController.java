@@ -1,6 +1,8 @@
 package Contest.Project.controllers;
 
 import Contest.Project.dtos.PropertyDTO;
+import Contest.Project.dtos.PropertyFilterDTO;
+import Contest.Project.dtos.PropertyResponseDTO;
 import Contest.Project.entities.Property;
 import Contest.Project.services.PropertiesService;
 import jakarta.validation.Valid;
@@ -52,4 +54,10 @@ public class PropertiesController {
         Property updateProperty = propertiesService.update(new PropertyDTO(),id);
         return ResponseEntity.ok(updateProperty).getBody();
     }
+
+    @GetMapping("/filter")
+    public List<PropertyResponseDTO> filterProperties(PropertyFilterDTO filter) {
+        return propertiesService.filterProperties(filter);
+    }
+
 }
