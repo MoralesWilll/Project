@@ -20,6 +20,8 @@ public class PropertyResponseDTO {
 
     private String description;
 
+    private String zone;
+
     private List<Contest.Project.entities.PropertyImages> PropertyImages;
 
 }
