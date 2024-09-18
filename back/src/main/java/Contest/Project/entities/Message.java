@@ -1,41 +1,42 @@
 package Contest.Project.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "messages")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_message")
-    private int id;
+    private Long id;
 
-    @Column(name = "body", columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String body;
 
-    @Column(name = "date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date date;
+    @Column(nullable = false)
+    private LocalDateTime date;
 
-    @ManyToOne
-    @JoinColumn(name = "id_owner_1", nullable = false)
-    private User sender;
+    @Column(name = "sender", nullable = false)
+    private int sender;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user_2", nullable = false)
-    private User recipient;
+    @Column(name = "recipient", nullable = false)
+    private int recipient;
+
+    public Message() {}
+
+    public Message(String body, LocalDateTime date, int sender, int recipient) {
+        this.body = body;
+        this.date = date;
+        this.sender = sender;
+        this.recipient = recipient;
+    }
+
+    // Getters and Setters
 
 }

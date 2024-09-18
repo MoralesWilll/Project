@@ -33,9 +33,6 @@ public class User {
     @Column(name = "password", nullable = false, length = 225)
     private String password;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
-    private List<Message> messages;
-
     @OneToMany(mappedBy = "id_user", cascade = CascadeType.ALL)
     private List<Property> properties; //ignore for buyers
 
