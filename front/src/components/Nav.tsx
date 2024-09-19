@@ -106,7 +106,7 @@ export const Nav: React.FC = () => {
         </Link>
         <MenuItem>Servicios</MenuItem>
         <MenuItem>Nosotros</MenuItem>
-        <Link href="/pages/customer" passHref>
+        <Link href="/pages/customer" passHref className="no-underline">
           <MenuItem>Cliente</MenuItem>
         </Link>
       </Menu>

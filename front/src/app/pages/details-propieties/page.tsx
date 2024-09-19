@@ -1,15 +1,11 @@
 "use client";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect } from "react"; // Asegúrate de usar useEffect
-import Nav from "@/components/Nav";
-import FooterPage from "@/components/Footer";
+import Nav from "../../../components/Nav";
+import FooterPage from "../../../components/Footer";
+import Link from "next/link";
 
 export const DetailsPropiety: React.FC = () => {
-  useEffect(() => {
-    // Importar el JavaScript de Bootstrap después del renderizado del cliente
-    import("bootstrap/dist/js/bootstrap.bundle.min.js");
-  }, []);
-
+  
   return (
     <>
       <div className="bg-[#003C71]">
@@ -18,6 +14,12 @@ export const DetailsPropiety: React.FC = () => {
       </div>
       <div className="pt-10 pb-10 mt-10 mb-10 w-full border-2 border-b-[#003C71] border-t-[#003C71]">
         <h3 className="text-5xl text-[#003C71] text-center">Caracteristicas</h3>
+      </div>
+      {/*--------------BUTTON RETURN---------------- */}
+      <div className="p-10 flex justify-center items-center">
+        <Link href="/pages/customer">
+          <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">Regresar</button>
+        </Link>
       </div>
       {/* ------------section carousel images-------- */}
       <div className="carousel-bootstrap w-full h-full">
@@ -152,6 +154,15 @@ export const DetailsPropiety: React.FC = () => {
                   className="border-b-2 border-[#003c71]  text-[#003c71]"
                 />
               </div>
+              <div className="flex flex-col text-[#003c71] text-sm pt-2 lg:text-2xl w-full">
+                <label className="font-bold">Seleccione una opcion :</label>
+                <select className="border-b-2 border-[#003c71]  text-[#003c71] w-full">
+                 <option value="arrendador">----</option>
+                  <option value="arrendador">Arrendador</option>
+                  <option value="arrendatario">Arrendatario</option>
+                  <option value="vendedor">Vendedor</option>
+                </select>
+              </div>
               {/* ------------images icons-------- */}
               <div className="flex flex-row justify-around p-3 text-[#003c71] text-sm lg:w-8/12 flex justify-center items-center ">
                 <div className="w-1/6 h-1/6 ">
@@ -186,9 +197,14 @@ export const DetailsPropiety: React.FC = () => {
             </div>
           </div>
           <div className="button-informatio-propiety pt-10 w-full h-full flex justify-center items-center ">
-          <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
+           <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
             Editar
-          </button>
+           </button>
+          </div>
+          <div className="button-informatio-propiety pt-10 w-full h-full flex justify-center items-center ">
+           <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
+            Comprar
+           </button>
           </div>
         </div>
       </section>
