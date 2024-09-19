@@ -21,21 +21,21 @@ export const ClientProfilePage: React.FC = () => {
             <div className="bg-custom-gradient rounded-full h-72 w-72 bg-[#003C71]"></div>
           </div>
           <div className=" w-4/6 h-full p-10 flex justify-start items-center">
-            <div className="bg-custom-gradient text-white flex justify-around flex-col rounded-sm bg-[#003C71] h-72 w-full p-10">
-              <h4 className="font-bold">
-                Nombre: <span>Samuel</span>
+            <div className="bg-custom-gradient text-white text-3xl flex justify-around flex-col rounded-sm bg-[#003C71] h-72 w-full p-10 ">
+              <h4 className="font-bold ">
+                Nombre: <span className=" text-sm">Samuel Acevedo Ossa</span>
               </h4>
               <h4 className="font-bold">
-                Correo: <span>samuelacevedo9307@gmail.com</span>
+                Correo: <span className=" text-sm">samuelacevedo9307@gmail.com</span>
               </h4>
               <h4 className="font-bold">
-                Nick name: <span>samuelacevedo9307@gmail.com</span>
+                Nick name: <span className=" text-sm">samuelacevedo9307@gmail.com</span>
               </h4>
             </div>
           </div>
         </div>
         {/*-------------- SUBTITLE TARGETS CUSTOMERS---------------- */}
-        <div className="pt-10 pb-10 w-full border-2 border-y-[#003C71] border-t-[#003C71]-500">
+        <div className="title-animation pt-10 pb-10 w-full border-2 border-y-[#003C71] border-t-[#003C71]-500">
           <h3 className="text-5xl text-[#003C71] text-center">
             Mis propiedades
           </h3>
@@ -58,7 +58,7 @@ export const ClientProfilePage: React.FC = () => {
       </div>
 
       {/*-------------- SUBTITLE ANOTHER PROPIETYS---------------- */}
-      <div className="pt-10 pb-10 w-full border-2 border-y-[#003C71] border-t-[#003C71]-500">
+      <div className=" title-animation pt-10 pb-10 w-full border-2 border-y-[#003C71] border-t-[#003C71]-500">
         <h3 className="text-5xl text-[#003C71] text-center">
           Otras propiedades
         </h3>

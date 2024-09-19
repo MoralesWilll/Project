@@ -101,7 +101,7 @@ export const Nav: React.FC = () => {
       </HamburgerButton>
 
       <Menu open={menuOpen}>
-        <Link href="/" passHref>
+        <Link href="/" passHref className="no-underline">
           <MenuItem>Inicio</MenuItem>
         </Link>
         <MenuItem>Servicios</MenuItem>

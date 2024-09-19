@@ -76,14 +76,17 @@ const PriceContainer = styled.div`
   padding: 1rem; /* p-1 */
 
   @media (max-width: ${breakpoints.mobile}) {
-    flex-direction: column;
+    
     align-items: flex-start;
   }
 `;
 
 const Price = styled.p`
   font-weight: bold;
-
+  border: solid white 1px;
+  padding: 0.25rem 0.5rem; /* p-1 rounded-md */
+  border-radius: 0.375rem; 
+  
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1rem; /* Ajustamos el tamaño de la fuente */
   }
@@ -93,6 +96,7 @@ const PriceValue = styled.p`
   background-color: #ffffff58; /* bg-[#ffffff58] */
   padding: 0.25rem 0.5rem; /* p-1 rounded-md */
   border-radius: 0.375rem; /* rounded-md */
+  font-weight: bold;
 
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1rem; /* Ajustamos el tamaño de la fuente */
@@ -139,7 +143,7 @@ const Button = styled.button`
   cursor: pointer;
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 45%; /* Hacemos que el botón ocupe más espacio en móviles */
+    width: 100%; /* Hacemos que el botón ocupe más espacio en móviles */
   }
 
   &:hover {
@@ -184,10 +188,10 @@ const Card: React.FC = () => (
             padding: "0.75rem",
           }}
         >
-          <Link href="/pages/details-propieties" className="w-1/3">
+          <Link href="/pages/details-propieties" className="w-2/6">
             <Button>Ver</Button>
           </Link>
-          <Link href="/pages/details-propieties" className="w-1/3">
+          <Link href="/pages/details-propieties" className="w-2/6">
             <Button>Editar</Button>
           </Link>
         </div>
