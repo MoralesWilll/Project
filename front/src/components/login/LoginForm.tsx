@@ -38,11 +38,11 @@ const Login: React.FC = () => {
         setError("")
         setIsLoading(true)
 
-        if (!validateEmail(user.username)) {
-            setError("Ingrese un correo electrónico válido")
-            setIsLoading(false)
-            return
-        }
+        // if (!validateEmail(user.username)) {
+        //     setError("Ingrese un correo electrónico válido")
+        //     setIsLoading(false)
+        //     return
+        // }
 
         try {
             const userData = await login(user)
