@@ -7,7 +7,7 @@ import FooterPage from "@/components/Footer";
 export const DetailsPropiety: React.FC = () => {
   useEffect(() => {
     // Importar el JavaScript de Bootstrap después del renderizado del cliente
-    import("bootstrap/dist/js/bootstrap.bundle.min.js");
+    require("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
 
   return (
