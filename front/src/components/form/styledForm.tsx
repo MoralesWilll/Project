@@ -34,6 +34,11 @@ export const ContainerForm = styled.div<{width?: string, height?: string}>`
         border-bottom: 1px solid ${colors.secondary};
     }
 
+    p {
+        text-align: center;
+        color: ${colors.white};
+    }
+
     @media (width <= 768px) {
         padding: 3rem;
         width: 100%;

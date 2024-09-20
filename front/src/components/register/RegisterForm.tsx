@@ -15,6 +15,7 @@ import { Container, ContainerForm, GroupTitle, InputContent, BackgroundForm } fr
 import Link from "next/link"
 import { colors } from "../../app/GlobalStyles"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { IoMdHome } from "react-icons/io";
 import { alertSuccess } from "../alerts/Alerts.component"
 import { useRouter } from "next/navigation"
 import { validateEmail } from "../../utils/validators"
@@ -149,6 +150,11 @@ const Register: React.FC = () => {
                     </Button>
                     <p>¿Ya tienes una cuenta? <Link href="/pages/login">Inicia sesión</Link></p>
                 </Form>
+                <p className="message-home">
+                    <Link href='/'>
+                        <span>Volver al inicio</span> <IoMdHome />
+                    </Link>
+                </p>
             </ContainerForm>
             <BackgroundForm />
         </Container>

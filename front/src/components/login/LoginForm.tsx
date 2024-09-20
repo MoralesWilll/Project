@@ -13,6 +13,7 @@ import { Container, ContainerForm, InputContent, TextError, BackgroundForm, Grou
 import Link from "next/link"
 import { colors } from "../../app/GlobalStyles"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { IoMdHome } from "react-icons/io";
 import { login } from "../../api/auth"
 // import { validateEmail } from "@/utils/validators"
 
@@ -115,6 +116,11 @@ const Login: React.FC = () => {
                     </Button>
                     <p>¿No tienes una cuenta? <Link href="/pages/register">Registrarse</Link></p>
                 </Form>
+                <p className="message-home">
+                    <Link href='/'>
+                        <span>Volver al inicio</span> <IoMdHome />
+                    </Link>
+                </p>
             </ContainerForm>
             <BackgroundForm />
         </Container>
