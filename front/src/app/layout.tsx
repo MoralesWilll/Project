@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import StyledComponentsRegistry from "../../lib/registry";
 import ClientLayout from "./ClientLayout";
 import "./globals.css";
 
@@ -34,9 +35,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        <StyledComponentsRegistry>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
