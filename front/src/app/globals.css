@@ -26,29 +26,23 @@
 }
 
 :root {
+  --background: #ffffff;
+  --foreground: #171717;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   
 }
 
-*{
-  /* border: solid 0.5px blue; */
-  font-family:sans-serif;
-}
+/* *{
+  border: solid 1px red;
+} */
 
 html {
   margin: 0;
   padding: 0;
   
 }
-
-body {
-  margin: 0;
-  padding: 0;
-
-}
-
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -58,11 +52,22 @@ body {
   }
 }
 
+
+.error-message {
+  background-color: red;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+
+/*----------------SECTION HOME---------------------*/
+
 /*----------------SECTION HOME---------------------*/
 
 /*----------------SECTION CUSTOMERS---------------------*/

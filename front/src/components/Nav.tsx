@@ -51,7 +51,7 @@ export const MenuItem = styled.li`
   }
 `;
 
-export const Button = styled.button`
+export const MenuButton = styled.div`
   padding: 10px 20px;
   background-color: #ffffff44;
   color: white;
@@ -110,8 +110,11 @@ export const Nav: React.FC = () => {
           <MenuItem>Cliente</MenuItem>
         </Link>
       </Menu>
-
-      <Button>Ingresar</Button>
+      <Link href="/pages/login">
+        <MenuButton>
+          Ingresar
+        </MenuButton>
+      </Link>
     </Navbar>
   );
 };

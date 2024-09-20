@@ -4,11 +4,10 @@ import Nav from "../../../components/Nav";
 import FooterPage from "../../../components/Footer";
 import Card from "../../../components/Cards";
 import React from "react";
-import styled from "styled-components";
 import Link from "next/link";
 
 // pages/profile.client.page.tsx
-export const ClientProfilePage: React.FC = () => {
+const ClientProfilePage: React.FC = () => {
   return (
     <div className="flex flex-col h-screen w-screen">
       <div className="bg-[#003C71] text-white no-underline">

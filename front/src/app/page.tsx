@@ -109,42 +109,42 @@ const Titleh3 = styled.h3`
   }
 `;
 
-const Services = styled.section`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+// const Services = styled.section`
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   width: 100%;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    flex-direction: column;
-  }
-`;
+//   @media (max-width: ${breakpoints.mobile}) {
+//     flex-direction: column;
+//   }
+// `;
 
-const IconServices = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
-  height: 20rem;
-  border: solid 1px #003c71;
+// const IconServices = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 20%;
+//   height: 20rem;
+//   border: solid 1px #003c71;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-`;
+//   @media (max-width: ${breakpoints.mobile}) {
+//     width: 80%;
+//     margin-bottom: 20px;
+//   }
+// `;
 
-const ImgIconArrendamiento = styled.img`
-  height: 70%;
-  width: 100%;
-  border: solid 1px #003c71;
+// const ImgIconArrendamiento = styled.img`
+//   height: 70%;
+//   width: 100%;
+//   border: solid 1px #003c71;
 
-  @media (max-width: ${breakpoints.mobile}) {
-    height: auto;
-    width: 100%;
-  }
-`;
+//   @media (max-width: ${breakpoints.mobile}) {
+//     height: auto;
+//     width: 100%;
+//   }
+// `;
 
 const HomePage: React.FC = () => {
   return (
@@ -161,7 +161,8 @@ const HomePage: React.FC = () => {
       </MainSection>
       <Titleh3>¿Qué desea realizar hoy?</Titleh3>
       {/*---------------SECTION ICONS CUSTOMERS---------------- */}
-      <section className="section-icon-home h-screen w-100 flex flex-col flex-nowrap justify-around align-around mb-10 mt-10 lg:flex-row">
+
+      <section className="section-icon-home h-screen w-100 flex flex-row flex-nowrap justify-around align-around mb-10 mt-10 lg:flex-row">
         <div className="h-full w-full object-contain">
           <img
             src="/assets/img/img-icons.jpg"
@@ -169,6 +170,7 @@ const HomePage: React.FC = () => {
             className="w-full h-full object-cover"
           />
         </div>
+
         <div className="bg-gradient-to-r from-[#020024] via-[#003C70] to-[#7BAEDB] h-full w-full flex flex-col justify-center items-center p-5 ">
           <div className="text-white text-5xl font-bold">
             <h2 className="text-center">Escoge una opción</h2>
@@ -206,18 +208,18 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
+
       </section>
       {/*---------------SECTION TARGETS "DESTACADOS"---------------- */}
       <section className="h-full w-full mt-40 ">
         {/*---------------TITLE 2 "DESTACADOS" AND DESCRIPTION----------- */}
-        <div className="flex flex-col ">
-          <h3 className="w-full text-center p-5 text-5xl border-t-2 border-b-2 border-[#003c71] text-[#003c71] mt-5">
+        <div className="flex flex-col p-5 border-t-2 border-b-2 border-[#003c71] text-[#003c71] gap-2">
+          <h3 className="w-full text-center text-5xl">
             Destacados
-            <h4 className="text-[#747474] text-center text-2xl  ">
-              Descubre las nuevas tendencias e incorporaciones trasadas en el
-              ultimo mes.
-            </h4>
           </h3>
+          <h4 className="text-[#747474] text-center text-2xl  ">
+            Descubre las nuevas tendencias e incorporaciones trasadas en el ultimo mes.
+          </h4>
         </div>
         {/*---------------TARGETS---------------- */}
         <div className="section-targets flex flex-col-3 justify-around items-center container-cards h-full w-full gap-40 p-20">

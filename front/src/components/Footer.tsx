@@ -26,7 +26,7 @@ const Footer = styled.footer`
 `;
 
 interface DivProps {
-  center?: boolean;
+  $alingItems?: string;
 }
 
 const Div = styled.div<DivProps>`
@@ -35,7 +35,7 @@ const Div = styled.div<DivProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: ${(props) => (props.center ? "center" : "flex-start")};
+  align-items: ${(props) => props.$alingItems || 'flex-start'};
 
   @media (max-width: 768px) {
     align-items: center;
@@ -109,7 +109,7 @@ const FooterPage: React.FC = () => (
     <Div>
       <Title>Logo</Title>
     </Div>
-    <Div center>
+    <Div $alingItems="center">
       <SubTitle>Menu</SubTitle>
       <List>
         <ListItem>
@@ -121,7 +121,7 @@ const FooterPage: React.FC = () => (
         <ListItem>Nosotros</ListItem>
       </List>
     </Div>
-    <Div center>
+    <Div $alingItems="center">
       <SubTitle>Redes sociales</SubTitle>
       <SocialIcons>
         <SocialIcon src="/assets/icons/instagram.png" alt="Instagram" />
