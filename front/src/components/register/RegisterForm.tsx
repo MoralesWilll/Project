@@ -61,6 +61,7 @@ const Register: React.FC = () => {
                 console.log("Success:", data)
                 console.log("User registered successfully!")
                 console.log(user)
+                localStorage.setItem("userData", JSON.stringify(data));
                 alertSuccess("Registrado", "Usuario registrado correctamente!")
                 router.push('/pages/customer')
                 setUser(initialState)

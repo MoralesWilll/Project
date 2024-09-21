@@ -1,4 +1,5 @@
 export interface UserData{
+    id?: string;
     username: string
     email: string
     password: string
@@ -6,6 +7,7 @@ export interface UserData{
 }
 
 export interface UserLogin {
+    id?: string;
     username: string
     password: string
 }

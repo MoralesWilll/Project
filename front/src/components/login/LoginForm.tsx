@@ -52,6 +52,7 @@ const Login: React.FC = () => {
                 setError("Credenciales incorrectas")
             } else if (userData.password === user.password) {
                 console.log("Login successfull!")
+                localStorage.setItem("userData", JSON.stringify(userData))
                 setUser(initialState)
             } else {
                 setError("Contraseña incorrecta")
