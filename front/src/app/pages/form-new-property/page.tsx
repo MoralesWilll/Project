@@ -1,10 +1,69 @@
 "use client";
 
+import { useState } from "react";
+import { createProperty } from "../../../api/properties";
+// import { UserData } from "../../../interfaces/IDataUser";
+import { PropertyData } from "../../../types/PropertyData";
+import { alertSuccess } from "../../../components/alerts/Alerts.component";
 import Nav from "../../../components/Nav";
 import FooterPage from "../../../components/Footer";
 import Link from "next/link";
+import { useRouter } from "next/navigation"
+
+const initialState: PropertyData = {
+  location: "",
+  price: "",
+  rooms: "",
+  bathrooms: "",
+  area: "",
+  type_sale: "",
+  id_user: "",
+};
 
 const NewProperty: React.FC = () => {
+  // const [userData, setUserData] = useState<UserData | null>(null);
+  const [formDataPro, setFormDataPro] = useState<PropertyData>(initialState);
+  
+  const router = useRouter();
+
+  // useEffect para verificar si el usuario está autenticado
+  // useEffect(() => {
+  //   const userLogged = localStorage.getItem("userData");
+
+  //   if (!userLogged) {
+  //     router.push("/"); 
+  //   } else {
+  //     const parsedUserData: UserData = JSON.parse(userLogged);
+  //     setUserData(parsedUserData); 
+  //     setFormDataPro({
+  //      ...formDataPro,
+  //       id_user: parsedUserData.id,
+  //     });
+  //   }
+  // }, [router]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormDataPro({
+      ...formDataPro,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await createProperty(formDataPro);
+      alertSuccess("Propiedad creada", "La propiedad fue creada exitosamente.");
+      setFormDataPro(initialState);
+      router.push("/pages/customer");
+    } catch (error) {
+      console.error("Error creando la propiedad:", error);
+    }
+  };
+
+  // if (!userData) {
+  //   return null;
+  // }
 
   return (
     <>
@@ -29,25 +88,34 @@ const NewProperty: React.FC = () => {
           </div>
           <div className="form-information-propiety w-full h-full">
             <div className="w-full h-full">
-              <div className="flex flex-col  text-[#003c71] text-sm pt-2 lg:text-2xl">
+              <div className="flex flex-col text-[#003c71] text-sm pt-2 lg:text-2xl">
                 <label className="font-bold">Lugar:</label>
                 <input
                   type="text"
-                  className="border-b-2 border-[#003c71]  text-[#003c71]"
+                  name="location"
+                  value={formDataPro.location}
+                  onChange={handleChange}
+                  className="border-b-2 border-[#003c71] text-[#003c71]"
                 />
               </div>
               <div className="flex flex-col text-[#003c71] text-sm pt-2 lg:text-2xl">
                 <label className="font-bold">Precio:</label>
                 <input
                   type="text"
-                  className="border-b-2 border-[#003c71]  text-[#003c71]"
+                  name="price"
+                  value={formDataPro.price}
+                  onChange={handleChange}
+                  className="border-b-2 border-[#003c71] text-[#003c71]"
                 />
               </div>
               <div className="flex flex-col text-[#003c71] text-sm pt-2 lg:text-2xl">
                 <label className="font-bold">Numero de habitaciones:</label>
                 <input
                   type="text"
-                  className="border-b-2 border-[#003c71]  text-[#003c71]"
+                  name="rooms"
+                  value={formDataPro.rooms}
+                  onChange={handleChange}
+                  className="border-b-2 border-[#003c71] text-[#003c71]"
                 />
               </div>
             </div>
@@ -56,23 +124,33 @@ const NewProperty: React.FC = () => {
                 <label className="font-bold">Numero de baños:</label>
                 <input
                   type="text"
-                  className="border-b-2 border-[#003c71]  text-[#003c71]"
+                  name="bathrooms"
+                  value={formDataPro.bathrooms}
+                  onChange={handleChange}
+                  className="border-b-2 border-[#003c71] text-[#003c71]"
                 />
               </div>
               <div className="flex flex-col text-[#003c71] text-sm pt-2 w-full lg:text-2xl">
-                <label className="font-bold">Area en metros cuadrados:</label>
+                <label className="font-bold">Área en metros cuadrados:</label>
                 <input
                   type="text"
-                  className="border-b-2 border-[#003c71]  text-[#003c71]"
+                  name="area"
+                  value={formDataPro.area}
+                  onChange={handleChange}
+                  className="border-b-2 border-[#003c71] text-[#003c71]"
                 />
               </div>
               <div className="flex flex-col text-[#003c71] text-sm pt-2 lg:text-2xl w-full">
-                <label className="font-bold">Seleccione una opcion :</label>
-                <select className="border-b-2 border-[#003c71]  text-[#003c71] w-full">
-                 <option value="arrendador">----</option>
+                <label className="font-bold">Seleccione una opción:</label>
+                <select
+                  name="type_sale"
+                  value={formDataPro.type_sale}
+                  onChange={handleChange}
+                  className="border-b-2 border-[#003c71] text-[#003c71] w-full"
+                >
+                  <option value="">----</option>
                   <option value="arrendador">Arrenda</option>
                   <option value="arrendatario">Venta</option>
-                 
                 </select>
               </div>
               {/* ------------images icons-------- */}
@@ -108,8 +186,9 @@ const NewProperty: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="button-informatio-propiety pt-10 w-full h-full flex justify-center items-center ">
-            <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
+
+          <div className="button-informatio-propiety pt-10 w-full h-full flex justify-center items-center">
+            <button onClick={handleSubmit} className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
               Agregar
             </button>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { PropertyData } from "../types/PropertyData";
 
 // Breakpoints para responsive
 const breakpoints = {
@@ -167,33 +168,37 @@ const Button = styled.button`
   }
 `;
 
-const Card: React.FC = () => (
+interface CardProps {
+  property: PropertyData;
+}
+
+const Card: React.FC<CardProps> = ({ property }) => (
   <CardContainer>
     <ImageContainer>
       <Image src="/assets/img/HERO.png" alt="place" />
     </ImageContainer>
     <InfoContainer>
       <div className="bg-[#ffffff] flex flex-row justify-center items-center p-1">
-        <Title>Nombre propiedad</Title>
-        <TypeSale>Arrienda</TypeSale>
+        <Title>{property.location}</Title>
+        <TypeSale>{property.type_sale}</TypeSale>
       </div>
       <PriceContainer>
         <Price>Precio</Price>
-        <PriceValue>2.000.000</PriceValue>
+        <PriceValue>{property.price}</PriceValue>
       </PriceContainer>
       <DetailsContainer>
         <div className="flex">
           <Detail>
             <p className="font-bold ">Habitaciones</p>
-            <p className="p-2 font-bold">2</p>
+            <p className="p-2 font-bold">{property.rooms}</p>
           </Detail>
           <Detail>
             <p className="font-bold ">Baños</p>
-            <p className="p-2 font-bold">1</p>
+            <p className="p-2 font-bold">{property.bathrooms}</p>
           </Detail>
           <Detail>
             <p className="font-bold ">Área</p>
-            <p className="p-2 font-bold">60</p>
+            <p className="p-2 font-bold">{property.area}</p>
           </Detail>
         </div>
         <div
@@ -209,7 +214,7 @@ const Card: React.FC = () => (
           <Link href="/pages/details-property" className="w-2/6 no-underline">
             <Button>Ver</Button>
           </Link>
-          <Link href="/pages/edit-propiety" className="w-2/6 no-underline">
+          <Link href="/pages/edit-property" className="w-2/6 no-underline">
             <Button>Editar</Button>
           </Link>
         </div>
