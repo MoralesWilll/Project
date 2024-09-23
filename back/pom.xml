@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>Contest</groupId>
-	<artifactId>Project</artifactId>
+	<artifactId>raices-urbanas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Project</name>
-	<description>Base repository for the project</description>
+	<name>raices-urbanas</name>
+	<description>Back repository for Raices Urbanas</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -34,8 +34,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-
-		<!-- Spring Boot Starter Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
