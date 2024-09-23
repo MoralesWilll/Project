@@ -1,101 +1,283 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+import styled from "styled-components";
+import Nav from "../components/Nav";
+import FooterPage from "../components/Footer";
+import Card from "../components/Cards";
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+//HERO
+const breakpoints = {
+  mobile: "768px", // Puedes ajustar el valor según tus necesidades
+};
+
+const Container = styled.div`
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  height: 100%;
+`;
+
+const MainSection = styled.section`
+  text-align: left;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 15%;
+  background: url(/assets/img/HERO.png);
+  background-size: cover;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    
+    height: 50vh;
+    padding-bottom: 5%;
+  }
+`;
+
+const TitleH1 = styled.h1`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 10rem;
+  color: #003c71;
+  height: 10rem;
+  width: 100%;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 4rem;
+    height: auto;
+    text-align: left;
+  }
+`;
+
+const Subtitle = styled.h2`
+  font-size: 5rem;
+  margin-bottom: 20px;
+  color: white;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 2rem;
+    text-align: left;
+  }
+`;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff44;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 30%;
+  &:hover {
+    background: linear-gradient(
+      45deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 60, 112, 1) 29%,
+      rgba(123, 174, 219, 1) 80%
+    );
+    font-weight: bold;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 150px;
+    height: 50px;
+    padding: 15px 0;
+    font-size: 1.2rem;
+  }
+`;
+
+const Titleh3 = styled.h3`
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 3rem;
+  border-top: solid 2px #003c71;
+  border-bottom: solid 2px #003c71;
+  color: #003c71;
+  margin-top: 50px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 2rem;
+    padding: 15px 0;
+  }
+`;
+
+// const Services = styled.section`
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   width: 100%;
+
+//   @media (max-width: ${breakpoints.mobile}) {
+//     flex-direction: column;
+//   }
+// `;
+
+// const IconServices = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 20%;
+//   height: 20rem;
+//   border: solid 1px #003c71;
+
+//   @media (max-width: ${breakpoints.mobile}) {
+//     width: 80%;
+//     margin-bottom: 20px;
+//   }
+// `;
+
+// const ImgIconArrendamiento = styled.img`
+//   height: 70%;
+//   width: 100%;
+//   border: solid 1px #003c71;
+
+//   @media (max-width: ${breakpoints.mobile}) {
+//     height: auto;
+//     width: 100%;
+//   }
+// `;
+
+const property = {
+  id: "1",
+  location: "Nombre propiedad",
+  price: "2.000.000",
+  rooms: "2",
+  bathrooms: "1",
+  area: "60",
+  type_sale: "Arrienda"
 }
+
+const HomePage: React.FC = () => {
+  return (
+    <Container>
+      <MainSection>
+        {/*---------------NAV---------------- */}
+        <Nav />
+        {/*---------------SECTION HERO---------------- */}
+        <div className="ml-5 flex flex-col justify-stretch">
+          <TitleH1 className="xs: text-xs">Medellín</TitleH1>
+          <Subtitle>Un lugar para vivir</Subtitle>
+          <Button>Conoce más</Button>
+        </div>
+      </MainSection>
+      <Titleh3>¿Qué desea realizar hoy?</Titleh3>
+      {/*---------------SECTION ICONS CUSTOMERS---------------- */}
+
+      <section className="section-icon-home h-screen w-100 flex flex-row flex-nowrap justify-around align-around mb-10 mt-10 lg:flex-row">
+        <div className="h-full w-full object-contain">
+          <img
+            src="/assets/img/img-icons.jpg"
+            alt="imgIcon"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="bg-gradient-to-r from-[#020024] via-[#003C70] to-[#7BAEDB] h-full w-full flex flex-col justify-center items-center p-5 ">
+          <div className="text-white text-5xl font-bold">
+            <h2 className="text-center">Escoge una opción</h2>
+          </div>
+          <div className="w-full h-max flex flex-col justify-around items-center lg:flex-row p-5">
+            <div className="w-2/6 h-full  flex justify-center items-center flex-col text-center hover:border-2  border-white rounded-lg">
+              <img
+                src="/assets/icons/arrendatario.png"
+                alt="arrendatario"
+                className="h-3/5 cursor-pointer"
+              />
+              <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
+                Arrendatario
+              </h4>
+            </div>
+            <div className="w-2/6 h-full flex justify-center items-center flex-col text-center hover:border-2 border-white rounded-lg">
+              <img
+                src="/assets/icons/arrendamiento.png"
+                alt="arrendador"
+                className="h-3/5 cursor-pointer object-fill "
+              />
+              <h4 className="h-1/5 w-full flex justify-center items-center text-white font-bold cursor-pointer">
+                Arrendador
+              </h4>
+            </div>
+            <div className="w-2/6 h-full flex justify-center items-center flex-col text-center hover:border-2 border-white rounded-lg">
+              <img
+                src="/assets/icons/vendedor.png"
+                alt="vendedor"
+                className="h-3/5 cursor-pointer"
+              />
+              <h4 className="h-1/5 w-full flex justify-center items-center  text-white font-bold cursor-pointer">
+                Vendedor
+              </h4>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      {/*---------------SECTION TARGETS "DESTACADOS"---------------- */}
+      <section className="h-full w-full mt-40 ">
+        {/*---------------TITLE 2 "DESTACADOS" AND DESCRIPTION----------- */}
+        <div className="flex flex-col p-5 border-t-2 border-b-2 border-[#003c71] text-[#003c71] gap-2">
+          <h3 className="w-full text-center text-5xl">
+            Destacados
+          </h3>
+          <h4 className="text-[#747474] text-center text-2xl  ">
+            Descubre las nuevas tendencias e incorporaciones trasadas en el ultimo mes.
+          </h4>
+        </div>
+        {/*---------------TARGETS---------------- */}
+        <div className="section-targets flex flex-col-3 justify-around items-center container-cards h-full w-full gap-40 p-20">
+          {/*---------------CONTAINER TARGETS---------------- */}
+          {/*---------------CARD 1---------------- */}
+          <Card property={property} />
+          {/*---------------CARD 2---------------- */}
+          <Card property={property} />
+          {/*---------------CARD 3---------------- */}
+          <Card property={property} />
+         
+        </div>
+        {/*---------------BUTTON MORE TARGETS---------------- */}
+        <div className="flex justify-center items-center w-full mt-20">
+          <button className="button-know-home text-[#003C71] rounded-sm shadow-[#003C71]-500/40 border-t-2 border-b-2 border-[#003C71] p-3">
+            Conoce mas
+          </button>
+        </div>
+      </section>
+      {/*---------------TECNOLOGYS---------------- */}
+      <section className="section-tecnologys flex w-full h-max p-5 justify-around items-center gap-20 mt-40 ">
+        <div className=" flex justify-center w-2/12 h-40 ">
+          <img
+            src="/assets/img/nextjs_logo.png"
+            alt=""
+            className="object-contain "
+          />
+        </div>
+        <div className=" flex justify-center w-2/12 h-40">
+          <img
+            src="/assets/img/mysql_logo.png"
+            alt=""
+            className="object-contain"
+          />
+        </div>
+        <div className=" flex justify-center w-2/12 h-40">
+          <img
+            src="/assets/img/logoJava.png"
+            alt=""
+            className="object-contain"
+          />
+        </div>
+      </section>
+      {/*---------------SECTION FOOTER---------------- */}
+      <FooterPage></FooterPage>
+    </Container>
+  );
+};
+
+export default HomePage;
