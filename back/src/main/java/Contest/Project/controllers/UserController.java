@@ -1,5 +1,6 @@
 package Contest.Project.controllers;
 
+import Contest.Project.dtos.LoginDTO;
 import Contest.Project.dtos.UserDTO;
 import Contest.Project.entities.User;
 import Contest.Project.services.UserService;
@@ -15,7 +16,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // Endpoint for user registration
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
         try {
@@ -26,14 +26,13 @@ public class UserController {
         }
     }
 
-    // Endpoint for user authentication (login)
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
-        User user = userService.authenticate(email, password);
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
+        User user = userService.authenticate(loginDTO.getEmail(), loginDTO.getPassword());
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Contraseña incorrecta o usuario no encontrado", HttpStatus.UNAUTHORIZED);
         }
     }
 

@@ -21,5 +21,5 @@ public class UserDTO {
     private String password;
 
     @NotNull
-    private int idRole;
+    private String roleName;
 }
